@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿//Copyright (c) 2012 Gaslamp Games Inc. See license.txt for license information.
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
