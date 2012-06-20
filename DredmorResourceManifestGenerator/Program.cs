@@ -5,7 +5,7 @@ using System.Text;
 using DredmorXmlValidation;
 using System.IO;
 
-namespace DredmoreResourceManifestGenerator
+namespace DredmorResourceManifestGenerator
 {
 	class Program
 	{

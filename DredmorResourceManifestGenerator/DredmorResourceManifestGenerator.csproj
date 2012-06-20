@@ -8,8 +8,8 @@
     <ProjectGuid>{4F9E342E-6FA4-49EA-B2DB-970C735D4DE9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DredmoreResourceManifestGenerator</RootNamespace>
-    <AssemblyName>DredmoreResourceManifestGenerator</AssemblyName>
+    <RootNamespace>DredmorResourceManifestGenerator</RootNamespace>
+    <AssemblyName>DredmorResourceManifestGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
