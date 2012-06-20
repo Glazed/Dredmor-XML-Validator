@@ -5,9 +5,9 @@ using System.Text;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// The result class for the mod validator.
-    /// </summary>
+	/// <summary>
+	/// The result class for the mod validator.
+	/// </summary>
 	public class ModValidationResult
 	{
 		public ModValidationResult()
@@ -16,9 +16,9 @@ namespace DredmorXmlValidation
 			ModErrors = new List<string>();
 		}
 
-        /// <summary>
-        /// True if the count of XML errors and mod errors is zero.
-        /// </summary>
+		/// <summary>
+		/// True if the count of XML errors and mod errors is zero.
+		/// </summary>
 		public bool IsValid
 		{
 			get
@@ -27,24 +27,24 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// Errors with the mod structure.
-        /// </summary>
+		/// <summary>
+		/// Errors with the mod structure.
+		/// </summary>
 		public List<string> ModErrors{ get; set; }
 
-        /// <summary>
-        /// Errors with the XML files, including well-formedness and schema errors.
-        /// </summary>
+		/// <summary>
+		/// Errors with the XML files, including well-formedness and schema errors.
+		/// </summary>
 		public List<XmlFileValidationErrorList> XmlErrors { get; set; }
 
-        /// <summary>
-        /// A collection of resources from expansions that were found to be used by the mod.
-        /// </summary>
+		/// <summary>
+		/// A collection of resources from expansions that were found to be used by the mod.
+		/// </summary>
 		public GameResources ExpansionResourcedUsed { get; set; }
 
-        /// <summary>
-        /// The numbers of expansions that this mod references resources from.
-        /// </summary>
+		/// <summary>
+		/// The numbers of expansions that this mod references resources from.
+		/// </summary>
 		public List<int> ExpansionNumbersUsed { get; set; }
 	}
 }

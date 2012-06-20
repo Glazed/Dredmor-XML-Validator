@@ -7,11 +7,11 @@ namespace DredmorUtilities
 {
 	public static class StringExtensions
 	{
-        /// <summary>
-        /// Returns a new string with the first character capitalized.
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
+		/// <summary>
+		/// Returns a new string with the first character capitalized.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
 		public static string Capitalize( this string s )
 		{
 			if ( s == null ) return null;

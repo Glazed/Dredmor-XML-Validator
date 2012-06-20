@@ -5,14 +5,14 @@ using System.Text;
 
 namespace DredmorUtilities
 {
-    /// <summary>
-    /// Contains informational data about the game and what files to load for particular purposes.
-    /// </summary>
+	/// <summary>
+	/// Contains informational data about the game and what files to load for particular purposes.
+	/// </summary>
 	public static class DredmorInfo
 	{
-        /// <summary>
-        /// XML files to read for loading resources into a manifest.
-        /// </summary>
+		/// <summary>
+		/// XML files to read for loading resources into a manifest.
+		/// </summary>
 		public static readonly string[] XmlFilesToLoadResources = 
 		{
 			"craftdb.xml",
@@ -22,9 +22,9 @@ namespace DredmorUtilities
 			"spelldb.xml",
 		};
 
-        /// <summary>
-        /// XML files to be validated by the validators.
-        /// </summary>
+		/// <summary>
+		/// XML files to be validated by the validators.
+		/// </summary>
 		public static readonly string[] XmlFilesToValidate = 
 		{
 			"craftdb.xml",
@@ -37,9 +37,9 @@ namespace DredmorUtilities
 			"mod.xml"
 		};
 
-        /// <summary>
-        /// All 'DB' type XML files.
-        /// </summary>
+		/// <summary>
+		/// All 'DB' type XML files.
+		/// </summary>
 		public static readonly string[] AllContentXmlFiles = 
 		{
 			"branchdb.xml",
@@ -61,9 +61,9 @@ namespace DredmorUtilities
 			"mod.xml"
 		};
 
-        /// <summary>
-        /// All currently supported triggered effect element names in lowercase.
-        /// </summary>
+		/// <summary>
+		/// All currently supported triggered effect element names in lowercase.
+		/// </summary>
 		public static readonly string[] TriggeredEffectNames = 
 		{
 			"triggeroncast",

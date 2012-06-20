@@ -10,19 +10,19 @@ using DredmorUtilities;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// Validates XMl files against the Dredmor schema.
-    /// </summary>
+	/// <summary>
+	/// Validates XMl files against the Dredmor schema.
+	/// </summary>
 	public class XsdValidator
 	{
 		static readonly XmlSchema schema = GetSchema();
 
-        /// <summary>
-        /// Validates each file, optionally ignoring the case of elements, attributes, and enumerated attribute values.
-        /// </summary>
-        /// <param name="filesToValidate"></param>
-        /// <param name="ignoreCase">If true, uses the CapitalizationFixer.Fix method to fix the capitalization of the file before validating.</param>
-        /// <returns></returns>
+		/// <summary>
+		/// Validates each file, optionally ignoring the case of elements, attributes, and enumerated attribute values.
+		/// </summary>
+		/// <param name="filesToValidate"></param>
+		/// <param name="ignoreCase">If true, uses the CapitalizationFixer.Fix method to fix the capitalization of the file before validating.</param>
+		/// <returns></returns>
 		public List<XmlFileValidationErrorList> Validate( IEnumerable<ContentFile> filesToValidate, bool ignoreCase )
 		{
 			List<XmlFileValidationErrorList> result = new List<XmlFileValidationErrorList>();
@@ -91,10 +91,10 @@ namespace DredmorXmlValidation
 			return errors;
 		}
 
-        /// <summary>
-        /// Gets the embedded schema document.
-        /// </summary>
-        /// <returns></returns>
+		/// <summary>
+		/// Gets the embedded schema document.
+		/// </summary>
+		/// <returns></returns>
 		private static XmlSchema GetSchema()
 		{
 			Assembly assembly = Assembly.GetAssembly( typeof( XsdValidator ) );

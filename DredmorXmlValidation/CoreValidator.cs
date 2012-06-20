@@ -8,9 +8,9 @@ using System.Xml;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// The validator for the core game.
-    /// </summary>
+	/// <summary>
+	/// The validator for the core game.
+	/// </summary>
 	public class CoreValidator
 	{
 		GameResources resources = new GameResources();
@@ -21,10 +21,10 @@ namespace DredmorXmlValidation
 			core = ContentDirectory.Create( path, true );
 		}
 
-        /// <summary>
-        /// Performs XML and XSD validation. If no files are malformed the performs resource validation.
-        /// </summary>
-        /// <returns></returns>
+		/// <summary>
+		/// Performs XML and XSD validation. If no files are malformed the performs resource validation.
+		/// </summary>
+		/// <returns></returns>
 		public CoreValidationResult Validate()
 		{
 			CoreValidationResult result = new CoreValidationResult();

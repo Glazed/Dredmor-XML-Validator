@@ -5,9 +5,9 @@ using System.Text;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// Validation result class for the <see cref="CoreValidator"/>.
-    /// </summary>
+	/// <summary>
+	/// Validation result class for the <see cref="CoreValidator"/>.
+	/// </summary>
 	public class CoreValidationResult
 	{
 		public CoreValidationResult()
@@ -15,9 +15,9 @@ namespace DredmorXmlValidation
 			XmlErrors = new List<XmlFileValidationErrorList>();
 		}
 
-        /// <summary>
-        /// True if the count of <see cref="XmlErrors"/> is zero.
-        /// </summary>
+		/// <summary>
+		/// True if the count of <see cref="XmlErrors"/> is zero.
+		/// </summary>
 		public bool IsValid
 		{
 			get

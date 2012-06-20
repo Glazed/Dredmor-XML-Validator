@@ -9,19 +9,19 @@ using DredmorUtilities;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// An abstract base class to encapsulate directory operations. Used to simplify
-    /// the differences between accessing files and subdirectories on physical disks
-    /// and zip files.
-    /// </summary>
-    /// <remarks>
-    /// When a mod zip is laoded, it's considered a 'directory' with a path of an empty string.
-    /// </remarks>
+	/// <summary>
+	/// An abstract base class to encapsulate directory operations. Used to simplify
+	/// the differences between accessing files and subdirectories on physical disks
+	/// and zip files.
+	/// </summary>
+	/// <remarks>
+	/// When a mod zip is laoded, it's considered a 'directory' with a path of an empty string.
+	/// </remarks>
 	public abstract class ContentDirectory
 	{
-        /// <summary>
-        /// If true, this directory is part of the base game or an expansion, not a mod.
-        /// </summary>
+		/// <summary>
+		/// If true, this directory is part of the base game or an expansion, not a mod.
+		/// </summary>
 		public bool IsCoreGame { get; set; }
 
 		protected ContentDirectory()
@@ -34,12 +34,12 @@ namespace DredmorXmlValidation
 			this.IsCoreGame = isCoreGame;
 		}
 
-        /// <summary>
-        /// Factory method for generating a ContentDirectory from a path.
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="isCoreGame"></param>
-        /// <returns></returns>
+		/// <summary>
+		/// Factory method for generating a ContentDirectory from a path.
+		/// </summary>
+		/// <param name="path"></param>
+		/// <param name="isCoreGame"></param>
+		/// <returns></returns>
 		public static ContentDirectory Create( string path, bool isCoreGame )
 		{
 			FileInfo file = new FileInfo( path );
@@ -61,105 +61,105 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// Enumerate all files in the directory, and optionally all subdirectories.
-        /// </summary>
-        /// <param name="searchOption"></param>
-        /// <returns></returns>
+		/// <summary>
+		/// Enumerate all files in the directory, and optionally all subdirectories.
+		/// </summary>
+		/// <param name="searchOption"></param>
+		/// <returns></returns>
 		public abstract IEnumerable<ContentFile> EnumerateFiles( SearchOption searchOption );
 		
-        /// <summary>
-        /// Enumerate all files in the directory that match the specified pattern, and optionally all subdirectories.
-        /// </summary>
-        /// <param name="pattern">A string which can include the * and ? wildcards.</param>
-        /// <param name="searchOption"></param>
-        /// <returns></returns>
-        public abstract IEnumerable<ContentFile> EnumerateFiles( string pattern, SearchOption searchOption );
+		/// <summary>
+		/// Enumerate all files in the directory that match the specified pattern, and optionally all subdirectories.
+		/// </summary>
+		/// <param name="pattern">A string which can include the * and ? wildcards.</param>
+		/// <param name="searchOption"></param>
+		/// <returns></returns>
+		public abstract IEnumerable<ContentFile> EnumerateFiles( string pattern, SearchOption searchOption );
 		
-        /// <summary>
-        /// Enumerate all XML files in the directory whose name is contained in the filenames array, and optionally all subdirectories.
-        /// </summary>
-        /// <param name="filenames"></param>
-        /// <param name="searchOption"></param>
-        /// <returns></returns>
-        public abstract IEnumerable<ContentFile> EnumerateXmlFiles( string[] filenames, SearchOption searchOption );
+		/// <summary>
+		/// Enumerate all XML files in the directory whose name is contained in the filenames array, and optionally all subdirectories.
+		/// </summary>
+		/// <param name="filenames"></param>
+		/// <param name="searchOption"></param>
+		/// <returns></returns>
+		public abstract IEnumerable<ContentFile> EnumerateXmlFiles( string[] filenames, SearchOption searchOption );
 		
-        /// <summary>
-        /// Gets a specific file with a path relative to this directory.
-        /// </summary>
-        /// <param name="relativePath"></param>
-        /// <returns></returns>
-        public abstract ContentFile GetFile( string relativePath );
+		/// <summary>
+		/// Gets a specific file with a path relative to this directory.
+		/// </summary>
+		/// <param name="relativePath"></param>
+		/// <returns></returns>
+		public abstract ContentFile GetFile( string relativePath );
 
-        /// <summary>
-        /// Gets a specific directory with a path relative to this directory.
-        /// </summary>
-        /// <param name="relativePath"></param>
-        /// <returns></returns>
+		/// <summary>
+		/// Gets a specific directory with a path relative to this directory.
+		/// </summary>
+		/// <param name="relativePath"></param>
+		/// <returns></returns>
 		public abstract ContentDirectory GetDirectory( string relativePath );
 
-        /// <summary>
-        /// The full path of this directory.
-        /// </summary>
+		/// <summary>
+		/// The full path of this directory.
+		/// </summary>
 		public abstract string FullName { get; }
 
-        /// <summary>
-        /// The path relative to the source this directory came from.
-        /// </summary>
+		/// <summary>
+		/// The path relative to the source this directory came from.
+		/// </summary>
 		public abstract string SourceRelativePath { get; }
 
-        /// <summary>
-        /// The name of the directory.
-        /// </summary>
+		/// <summary>
+		/// The name of the directory.
+		/// </summary>
 		public abstract string Name { get; }
 	}
 
-    /// <summary>
-    /// An abstract base class that represents a file in a <see cref="ContentDirectory"/>.
-    /// </summary>
+	/// <summary>
+	/// An abstract base class that represents a file in a <see cref="ContentDirectory"/>.
+	/// </summary>
 	public abstract class ContentFile
 	{
-        /// <summary>
-        /// Opens the file as a stream for reading.
-        /// </summary>
-        /// <returns></returns>
+		/// <summary>
+		/// Opens the file as a stream for reading.
+		/// </summary>
+		/// <returns></returns>
 		public abstract Stream OpenRead();
 
-        /// <summary>
-        /// Opens the file as text.
-        /// </summary>
-        /// <returns></returns>
+		/// <summary>
+		/// Opens the file as text.
+		/// </summary>
+		/// <returns></returns>
 		public abstract StreamReader OpenText();
 
-        /// <summary>
-        /// The full path and name of the file.
-        /// </summary>
+		/// <summary>
+		/// The full path and name of the file.
+		/// </summary>
 		public abstract string FullName { get; }
 
-        /// <summary>
-        /// The path relative to the source this file came from.
-        /// </summary>
+		/// <summary>
+		/// The path relative to the source this file came from.
+		/// </summary>
 		public abstract string SourceRelativePath { get; }
 
-        /// <summary>
-        /// The 'expansion' number of this file. The base game is 0, expansions are 1 or higher. Mods sources are set to 100.
-        /// </summary>
+		/// <summary>
+		/// The 'expansion' number of this file. The base game is 0, expansions are 1 or higher. Mods sources are set to 100.
+		/// </summary>
 		public abstract int ExpansionNumber { get; }
 
-        /// <summary>
-        /// The name of this file.
-        /// </summary>
+		/// <summary>
+		/// The name of this file.
+		/// </summary>
 		public abstract string Name { get; }
 
-        /// <summary>
-        /// The directory which contains this file.
-        /// </summary>
+		/// <summary>
+		/// The directory which contains this file.
+		/// </summary>
 		public abstract ContentDirectory Directory { get; }
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="ContentDirectory"/> for physical directories.
-    /// </summary>
+	/// <summary>
+	/// An implementation of <see cref="ContentDirectory"/> for physical directories.
+	/// </summary>
 	public class FileSystemDirectory : ContentDirectory
 	{
 		private DirectoryInfo _directory;
@@ -256,9 +256,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="ContentFile"/> for physical files.
-    /// </summary>
+	/// <summary>
+	/// An implementation of <see cref="ContentFile"/> for physical files.
+	/// </summary>
 	public class FileSystemFile : ContentFile
 	{
 		private FileInfo _file;
@@ -273,7 +273,7 @@ namespace DredmorXmlValidation
 
 			_relativePath = Path.Combine( directory.SourceRelativePath, file.Name );
 
-            //determine if this file is in one of the expansion folders.
+			//determine if this file is in one of the expansion folders.
 			if ( directory.IsCoreGame && _relativePath.ToLower().StartsWith( "expansion" ) )
 			{
 				Regex r = new Regex( @"expansion(\d*)\\(.*)", RegexOptions.IgnoreCase );
@@ -301,7 +301,7 @@ namespace DredmorXmlValidation
 			}
 			else
 			{
-                //This is a mod.
+				//This is a mod.
 				_expansionNumber = 100;
 			}
 		}
@@ -362,9 +362,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="ContentDirectory"/> for zip files themselves as well as directories within them.
-    /// </summary>
+	/// <summary>
+	/// An implementation of <see cref="ContentDirectory"/> for zip files themselves as well as directories within them.
+	/// </summary>
 	public class ZipFileDirectory : ContentDirectory
 	{
 		private ZipFile _zip;
@@ -512,9 +512,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="ContentFile"/> that represents a file within a zip file.
-    /// </summary>
+	/// <summary>
+	/// An implementation of <see cref="ContentFile"/> that represents a file within a zip file.
+	/// </summary>
 	public class ZipFileFile : ContentFile
 	{
 		private ZipEntry _entry;

@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// Translates the raw XSD errors from XmlReader into friendlier ones.
-    /// </summary>
+	/// <summary>
+	/// Translates the raw XSD errors from XmlReader into friendlier ones.
+	/// </summary>
 	public class XmlErrorTranslator
 	{
 		static readonly Regex attributeValueError = new Regex( @"The '(\w+)' attribute is invalid - The value '(\w*)' is invalid according to its datatype", RegexOptions.IgnoreCase );
@@ -16,10 +16,10 @@ namespace DredmorXmlValidation
 		static readonly Regex attributeError2 = new Regex( @"Could not find schema information for the attribute '(\w+)'.", RegexOptions.IgnoreCase );
 		static readonly Regex childElementError = new Regex( @"The element '(\w+)' has invalid child element '(\w+)'.", RegexOptions.IgnoreCase );
 
-        /// <summary>
-        /// Translates the raw XSD error from XmlReader into a friendlier one.
-        /// </summary>
-        public static string Translate(string error)
+		/// <summary>
+		/// Translates the raw XSD error from XmlReader into a friendlier one.
+		/// </summary>
+		public static string Translate(string error)
 		{
 			Match match;
 

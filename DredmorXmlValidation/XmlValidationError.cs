@@ -7,24 +7,24 @@ using System.Xml;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// Contains a list of <see cref="XmlValidationError"/> for a specific file.
-    /// </summary>
+	/// <summary>
+	/// Contains a list of <see cref="XmlValidationError"/> for a specific file.
+	/// </summary>
 	public class XmlFileValidationErrorList
 	{	
-        /// <summary>
-        /// The absolute path to the physical file, or the relative path for a mod file.
-        /// </summary>
+		/// <summary>
+		/// The absolute path to the physical file, or the relative path for a mod file.
+		/// </summary>
 		public string Path { get; set; }
 
-        /// <summary>
-        /// The list of errors.
-        /// </summary>
+		/// <summary>
+		/// The list of errors.
+		/// </summary>
 		public List<XmlValidationError> Errors { get; set; }
 
-        /// <summary>
-        /// If true, indicates that an exception occurred loading the XML file.
-        /// </summary>
+		/// <summary>
+		/// If true, indicates that an exception occurred loading the XML file.
+		/// </summary>
 		public bool XmlExceptionOccurred { get; private set; }
 
 		public XmlFileValidationErrorList()
@@ -33,11 +33,11 @@ namespace DredmorXmlValidation
 		}
 
 
-        /// <summary>
-        /// Constructs an instance based on a <see cref="XmlException"/> that occurred.
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="ex"></param>
+		/// <summary>
+		/// Constructs an instance based on a <see cref="XmlException"/> that occurred.
+		/// </summary>
+		/// <param name="filePath"></param>
+		/// <param name="ex"></param>
 		public XmlFileValidationErrorList( string filePath, XmlException ex )
 		{
 			Path = filePath;
@@ -51,9 +51,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// A specific XML error.
-    /// </summary>
+	/// <summary>
+	/// A specific XML error.
+	/// </summary>
 	public class XmlValidationError
 	{
 		public int LineNumber { get; set; }

@@ -11,12 +11,12 @@ using System.IO;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// Performs XML reference and physical resource validation.
-    /// </summary>
-    /// <remarks>
-    /// Contains many protected methods used by each of the implementations of this class.
-    /// </remarks>
+	/// <summary>
+	/// Performs XML reference and physical resource validation.
+	/// </summary>
+	/// <remarks>
+	/// Contains many protected methods used by each of the implementations of this class.
+	/// </remarks>
 	public abstract class XmlResourceValidator
 	{
 		protected XDocument doc;
@@ -27,7 +27,7 @@ namespace DredmorXmlValidation
 		protected GameResources expansionResourcesUsed;
 		private int expansionNumber;
 
-        protected XmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
+		protected XmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
 		{
 			this.resources = resources;
 			this.path = file.FullName;
@@ -48,13 +48,13 @@ namespace DredmorXmlValidation
 			};
 		}
 
-        /// <summary>
-        /// Factory method to create appropriate validator for the specified file.
-        /// </summary>
-        /// <param name="file"></param>
-        /// <param name="resources">An instance of <see cref="GameResources"/> containing all valid resources from the core game and optionally a mod.</param>
-        /// <param name="expansionResourcesUsed">An instance of <see cref="GameResources"/> to which expansion resources found to be used will be added.</param>
-        /// <returns></returns>
+		/// <summary>
+		/// Factory method to create appropriate validator for the specified file.
+		/// </summary>
+		/// <param name="file"></param>
+		/// <param name="resources">An instance of <see cref="GameResources"/> containing all valid resources from the core game and optionally a mod.</param>
+		/// <param name="expansionResourcesUsed">An instance of <see cref="GameResources"/> to which expansion resources found to be used will be added.</param>
+		/// <returns></returns>
 		public static XmlResourceValidator Create( ContentFile file, GameResources resources, GameResources expansionResourcesUsed = null )
 		{
 			switch ( file.Name.ToLower() )
@@ -78,13 +78,13 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// Validates all fo the XML files.
-        /// </summary>
-        /// <param name="xmlFiles"></param>
-        /// <param name="resources">An instance of <see cref="GameResources"/> containing all valid resources from the core game and optionally a mod.</param>
-        /// <param name="expansionResourcesUsed">An instance of <see cref="GameResources"/> to which expansion resources found to be used will be added.</param>
-        /// <returns></returns>
+		/// <summary>
+		/// Validates all fo the XML files.
+		/// </summary>
+		/// <param name="xmlFiles"></param>
+		/// <param name="resources">An instance of <see cref="GameResources"/> containing all valid resources from the core game and optionally a mod.</param>
+		/// <param name="expansionResourcesUsed">An instance of <see cref="GameResources"/> to which expansion resources found to be used will be added.</param>
+		/// <returns></returns>
 		public static List<XmlFileValidationErrorList> Validate( IEnumerable<ContentFile> xmlFiles, GameResources resources, GameResources expansionResourcesUsed = null )
 		{
 			List<XmlFileValidationErrorList> result = new List<XmlFileValidationErrorList>();
@@ -525,11 +525,11 @@ namespace DredmorXmlValidation
 			return matchingAttributes;
 		}
 
-        /// <summary>
-        /// Checks the elements for multiples of the same descendant elements where only one should be allowed.
-        /// </summary>
-        /// <param name="elements">The elements to check.</param>
-        /// <param name="elementNames">An array of descendant element names that only one of each is allowed.</param>
+		/// <summary>
+		/// Checks the elements for multiples of the same descendant elements where only one should be allowed.
+		/// </summary>
+		/// <param name="elements">The elements to check.</param>
+		/// <param name="elementNames">An array of descendant element names that only one of each is allowed.</param>
 		protected void AddSingletonDecendantErrors( IEnumerable<XElement> elements, params string[] elementNames )
 		{
 			foreach ( var elementName in elementNames )
@@ -554,12 +554,12 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// Checks the elements for multiples of the same child elements where only one should be allowed.
-        /// </summary>
-        /// <param name="elements">The elements to check.</param>
-        /// <param name="elementNames">An array of child element names that only one of each is allowed.</param>
-        protected void AddSingletonChildErrors(IEnumerable<XElement> elements, params string[] elementNames)
+		/// <summary>
+		/// Checks the elements for multiples of the same child elements where only one should be allowed.
+		/// </summary>
+		/// <param name="elements">The elements to check.</param>
+		/// <param name="elementNames">An array of child element names that only one of each is allowed.</param>
+		protected void AddSingletonChildErrors(IEnumerable<XElement> elements, params string[] elementNames)
 		{
 			foreach ( var elementName in elementNames )
 			{
@@ -583,11 +583,11 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// Checks the elements for the error condition where it has more than one of the specified desendants.
-        /// </summary>
-        /// <param name="elements"></param>
-        /// <param name="descendantElementNames"></param>
+		/// <summary>
+		/// Checks the elements for the error condition where it has more than one of the specified desendants.
+		/// </summary>
+		/// <param name="elements"></param>
+		/// <param name="descendantElementNames"></param>
 		protected void AddMutuallyExclusiveSingletonDecendantErrors( IEnumerable<XElement> elements, params string[] descendantElementNames )
 		{
 			var badOnes =
@@ -615,9 +615,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// Represents an element and attribute name.
-    /// </summary>
+	/// <summary>
+	/// Represents an element and attribute name.
+	/// </summary>
 	public class ElementAttribute
 	{
 		public ElementAttribute( string element, string attribute )
@@ -630,10 +630,10 @@ namespace DredmorXmlValidation
 		public string Attribute { get; set; }
 	}
 
-    /// <summary>
-    /// Represents an element and attribute name along with a frame count.
-    /// </summary>
-    public class AnimationElementAttribute : ElementAttribute
+	/// <summary>
+	/// Represents an element and attribute name along with a frame count.
+	/// </summary>
+	public class AnimationElementAttribute : ElementAttribute
 	{
 		public AnimationElementAttribute( string element, string attribute, string frameCountAttribute )
 			: base( element, attribute )
@@ -644,9 +644,9 @@ namespace DredmorXmlValidation
 		public string FrameCountAttribute { get; set; }
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="XmlResourceValidator"/> for the item file.
-    /// </summary>
+	/// <summary>
+	/// An implementation of <see cref="XmlResourceValidator"/> for the item file.
+	/// </summary>
 	public class ItemXmlResourceValidator : XmlResourceValidator
 	{
 		public ItemXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
@@ -708,10 +708,10 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="XmlResourceValidator"/> for the spell file.
-    /// </summary>
-    public class SpellXmlResourceValidator : XmlResourceValidator
+	/// <summary>
+	/// An implementation of <see cref="XmlResourceValidator"/> for the spell file.
+	/// </summary>
+	public class SpellXmlResourceValidator : XmlResourceValidator
 	{
 		public SpellXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
 			: base( file, resources, expansionResourcesUsed )
@@ -786,9 +786,9 @@ namespace DredmorXmlValidation
 			return result;
 		}
 
-        /// <summary>
-        /// Spell animations can contain animation sequences or a PNG. PNG is only allowed for missile spells.
-        /// </summary>
+		/// <summary>
+		/// Spell animations can contain animation sequences or a PNG. PNG is only allowed for missile spells.
+		/// </summary>
 		private void AddSpellAnimationErrors()
 		{
 			var spellsWithAnimSprites =
@@ -866,10 +866,10 @@ namespace DredmorXmlValidation
 		
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="XmlResourceValidator"/> for the monster file.
-    /// </summary>
-    public class MonsterXmlResourceValidator : XmlResourceValidator
+	/// <summary>
+	/// An implementation of <see cref="XmlResourceValidator"/> for the monster file.
+	/// </summary>
+	public class MonsterXmlResourceValidator : XmlResourceValidator
 	{
 		public MonsterXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
 			: base( file, resources, expansionResourcesUsed )
@@ -970,10 +970,10 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="XmlResourceValidator"/> for the skill file.
-    /// </summary>
-    public class SkillXmlResourceValidator : XmlResourceValidator
+	/// <summary>
+	/// An implementation of <see cref="XmlResourceValidator"/> for the skill file.
+	/// </summary>
+	public class SkillXmlResourceValidator : XmlResourceValidator
 	{
 		public SkillXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
 			: base( file, resources, expansionResourcesUsed )
@@ -1064,10 +1064,10 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="XmlResourceValidator"/> for the craft file.
-    /// </summary>
-    public class CraftXmlResourceValidator : XmlResourceValidator
+	/// <summary>
+	/// An implementation of <see cref="XmlResourceValidator"/> for the craft file.
+	/// </summary>
+	public class CraftXmlResourceValidator : XmlResourceValidator
 	{
 		public CraftXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
 			: base( file, resources, expansionResourcesUsed )
@@ -1090,10 +1090,10 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="XmlResourceValidator"/> for the room file.
-    /// </summary>
-    public class RoomXmlResourceValidator : XmlResourceValidator
+	/// <summary>
+	/// An implementation of <see cref="XmlResourceValidator"/> for the room file.
+	/// </summary>
+	public class RoomXmlResourceValidator : XmlResourceValidator
 	{
 		public RoomXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
 			: base( file, resources, expansionResourcesUsed )
@@ -1163,10 +1163,10 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An implementation of <see cref="XmlResourceValidator"/> for the soundfx file.
-    /// </summary>
-    public class SoundXmlResourceValidator : XmlResourceValidator
+	/// <summary>
+	/// An implementation of <see cref="XmlResourceValidator"/> for the soundfx file.
+	/// </summary>
+	public class SoundXmlResourceValidator : XmlResourceValidator
 	{
 		public SoundXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
 			: base( file, resources, expansionResourcesUsed )

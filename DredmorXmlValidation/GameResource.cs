@@ -12,10 +12,10 @@ using System.Collections;
 
 namespace DredmorXmlValidation
 {
-    /// <summary>
-    /// A class which contains representations of XML content (references) and physical files (resources). 
-    /// This class is XML-serialized into the resource manifest.
-    /// </summary>
+	/// <summary>
+	/// A class which contains representations of XML content (references) and physical files (resources). 
+	/// This class is XML-serialized into the resource manifest.
+	/// </summary>
 	public class GameResources
 	{
 		List<ContentResource> contentResources = new List<ContentResource>();
@@ -24,9 +24,9 @@ namespace DredmorXmlValidation
 
 		#region Properties
 
-        /// <summary>
-        /// XML content such as items, spells, and abilities.
-        /// </summary>
+		/// <summary>
+		/// XML content such as items, spells, and abilities.
+		/// </summary>
 		public List<ContentResource> ContentResources
 		{
 			get
@@ -35,9 +35,9 @@ namespace DredmorXmlValidation
 			}
 		}				
 
-        /// <summary>
-        /// Physical resource files.
-        /// </summary>
+		/// <summary>
+		/// Physical resource files.
+		/// </summary>
 		public List<FileResource> Files
 		{
 			get
@@ -46,9 +46,9 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// Physical animation sequences.
-        /// </summary>
+		/// <summary>
+		/// Physical animation sequences.
+		/// </summary>
 		public List<AnimationResource> Animations
 		{
 			get
@@ -57,9 +57,9 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// A filter on <see cref="ContentResources"/> for crafts.
-        /// </summary>
+		/// <summary>
+		/// A filter on <see cref="ContentResources"/> for crafts.
+		/// </summary>
 		[XmlIgnore]
 		public ContentResourceFilter Crafts
 		{
@@ -69,10 +69,10 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// A filter on <see cref="ContentResources"/> for items.
-        /// </summary>
-        [XmlIgnore]
+		/// <summary>
+		/// A filter on <see cref="ContentResources"/> for items.
+		/// </summary>
+		[XmlIgnore]
 		public ContentResourceFilter Items
 		{
 			get
@@ -81,10 +81,10 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// A filter on <see cref="ContentResources"/> for monsters.
-        /// </summary>
-        [XmlIgnore]
+		/// <summary>
+		/// A filter on <see cref="ContentResources"/> for monsters.
+		/// </summary>
+		[XmlIgnore]
 		public ContentResourceFilter Monsters
 		{
 			get
@@ -93,10 +93,10 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// A filter on <see cref="ContentResources"/> for sounds.
-        /// </summary>
-        [XmlIgnore]
+		/// <summary>
+		/// A filter on <see cref="ContentResources"/> for sounds.
+		/// </summary>
+		[XmlIgnore]
 		public ContentResourceFilter Sounds
 		{
 			get
@@ -105,10 +105,10 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// A filter on <see cref="ContentResources"/> for spells.
-        /// </summary>
-        [XmlIgnore]
+		/// <summary>
+		/// A filter on <see cref="ContentResources"/> for spells.
+		/// </summary>
+		[XmlIgnore]
 		public ContentResourceFilter Spells
 		{
 			get
@@ -117,10 +117,10 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// A filter on <see cref="ContentResources"/> for taxa.
-        /// </summary>
-        [XmlIgnore]
+		/// <summary>
+		/// A filter on <see cref="ContentResources"/> for taxa.
+		/// </summary>
+		[XmlIgnore]
 		public ContentResourceFilter Taxa
 		{
 			get
@@ -131,10 +131,10 @@ namespace DredmorXmlValidation
 
 		#endregion
 
-        /// <summary>
-        /// Loads all references and resources from the specified source.
-        /// </summary>
-        /// <param name="source"></param>
+		/// <summary>
+		/// Loads all references and resources from the specified source.
+		/// </summary>
+		/// <param name="source"></param>
 		public void LoadResources( ContentDirectory source )
 		{
 			PopulateResources( source );
@@ -151,9 +151,9 @@ namespace DredmorXmlValidation
 			}
 		}
 
-        /// <summary>
-        /// Adds hard-coded game items.
-        /// </summary>
+		/// <summary>
+		/// Adds hard-coded game items.
+		/// </summary>
 		private void AddHardCodedResources()
 		{
 			contentResources.Add( 
@@ -180,7 +180,7 @@ namespace DredmorXmlValidation
 
 		private void AddXmlSpriteResources( ContentDirectory source )
 		{
-            //This ignores the "DB" XML files from the search and considers all other XMl files as sprite files.
+			//This ignores the "DB" XML files from the search and considers all other XMl files as sprite files.
 			var xmlSpriteFiles =
 				source.EnumerateFiles( "*.xml", SearchOption.AllDirectories )
 				.Where( p => !DredmorInfo.AllContentXmlFiles.Any( q => q == p.Name.ToLower() ) );
@@ -431,17 +431,17 @@ namespace DredmorXmlValidation
 		#endregion
 	}
 
-    /// <summary>
-    /// Base class for all game resources and XML content.
-    /// </summary>
+	/// <summary>
+	/// Base class for all game resources and XML content.
+	/// </summary>
 	public class GameResource
 	{
 		public int ExpansionNumber { get; set; }
 	}
 
-    /// <summary>
-    /// An XML content resource like an item or spell.
-    /// </summary>
+	/// <summary>
+	/// An XML content resource like an item or spell.
+	/// </summary>
 	public class ContentResource : GameResource
 	{
 		public string Name { get; set; }
@@ -453,9 +453,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// A physical file resource.
-    /// </summary>
+	/// <summary>
+	/// A physical file resource.
+	/// </summary>
 	public class FileResource : GameResource
 	{
 		public string Path { get; set; }
@@ -467,9 +467,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// An animation sequence resource.
-    /// </summary>
+	/// <summary>
+	/// An animation sequence resource.
+	/// </summary>
 	public class AnimationResource : GameResource
 	{
 		public string Name { get; set; }
@@ -481,9 +481,9 @@ namespace DredmorXmlValidation
 		}
 	}
 
-    /// <summary>
-    /// The type of physical file resource.
-    /// </summary>
+	/// <summary>
+	/// The type of physical file resource.
+	/// </summary>
 	public enum FileResourceType
 	{
 		Wave,
@@ -494,9 +494,9 @@ namespace DredmorXmlValidation
 		Palette
 	}
 
-    /// <summary>
-    /// The type of XML content.
-    /// </summary>
+	/// <summary>
+	/// The type of XML content.
+	/// </summary>
 	public enum ContentResourceType
 	{
 		Item,
@@ -507,9 +507,9 @@ namespace DredmorXmlValidation
 		Sound
 	}
 
-    /// <summary>
-    /// An enumerable filter for content resources.
-    /// </summary>
+	/// <summary>
+	/// An enumerable filter for content resources.
+	/// </summary>
 	public class ContentResourceFilter : IEnumerable<ContentResource>
 	{
 		private ContentResourceType _type;
