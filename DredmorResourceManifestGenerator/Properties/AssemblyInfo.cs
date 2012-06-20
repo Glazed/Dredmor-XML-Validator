@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "DredmoreResourceManifestGenerator" )]
+[assembly: AssemblyTitle( "DredmorResourceManifestGenerator" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "" )]
-[assembly: AssemblyProduct( "DredmoreResourceManifestGenerator" )]
+[assembly: AssemblyCompany( "Gaslamp Games Inc." )]
+[assembly: AssemblyProduct( "DredmorResourceManifestGenerator" )]
 [assembly: AssemblyCopyright( "Copyright ©  2012" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
