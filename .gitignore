@@ -1,3 +1,6 @@
+#Custom Release folder
+_Release
+
 #Visual Studio files
 *.[Oo]bj
 *.user
