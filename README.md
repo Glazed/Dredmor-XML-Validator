@@ -1,7 +1,9 @@
 Dredmor-XML-Validator
 =====================
 
-XML validation tools for mods for the game Dungeons of Dredmor.
+XML validation tools for mods for the game Dungeons of Dredmor. Until I have more documentation, you can reaad more here:
+
+http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 License
 =====================
