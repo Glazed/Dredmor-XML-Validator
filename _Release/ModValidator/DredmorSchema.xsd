@@ -1,0 +1,1326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="craftDB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="craft">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="output">
+								<xs:complexType>
+									<xs:attribute name="skill" type="xs:unsignedByte" use="required" />
+									<xs:attribute name="name" type="xs:string" use="required" />
+									<xs:attribute name="amount" type="xs:unsignedInt" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="tool">
+								<xs:complexType>
+									<xs:attribute name="tag" type="toolkitTag" use="required" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" name="input">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="hidden" type="dodBoolean" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="itemDB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element maxOccurs="unbounded" name="item">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice maxOccurs="unbounded">
+									<xs:element name="price">
+										<xs:complexType>
+											<xs:attribute name="amount" type="xs:unsignedInt" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="weapon">
+										<xs:complexType>
+											<xs:attributeGroup ref="damageValues"/>
+											<xs:attribute name="hit" type="xs:string" />
+											<xs:attribute name="thrown" type="xs:string" />
+											<xs:attribute name="canTargetFloor" type="dodBoolean" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="artifact">
+										<xs:complexType>
+											<xs:attribute name="quality" type="xs:unsignedInt" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="resistBuff">
+										<xs:complexType>
+											<xs:attributeGroup ref="resistanceValues"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="primaryBuff" type="primaryBuff"/>
+									<xs:element name="secondaryBuff" type="secondaryBuff"/>
+									<xs:element name="food">
+										<xs:complexType>
+											<xs:attribute name="hp" type="xs:unsignedInt" />
+											<xs:attribute name="mp" type="xs:unsignedInt" />
+											<xs:attribute name="meat" type="dodBoolean" />
+											<xs:attribute name="effect" type="xs:string" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="description">
+										<xs:complexType>
+											<xs:attribute name="text" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="armour">
+										<xs:complexType>
+											<xs:attribute name="level" type="xs:unsignedInt" use="required" />
+											<xs:attribute name="type" use="required">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="chest"/>
+														<xs:enumeration value="feet"/>
+														<xs:enumeration value="hands"/>
+														<xs:enumeration value="head"/>
+														<xs:enumeration value="legs"/>
+														<xs:enumeration value="neck"/>
+														<xs:enumeration value="ring"/>
+														<xs:enumeration value="shield"/>
+														<xs:enumeration value="sleeve"/>
+														<xs:enumeration value="waist"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="randoms" type="dodBoolean" />
+											<xs:attribute name="hit" type="xs:string" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="damageBuff">
+										<xs:complexType>
+											<xs:attributeGroup ref="damageValues"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="casts">
+										<xs:complexType>
+											<xs:attribute name="spell" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="mushroom" />
+									<xs:element name="gem" />
+									<xs:element name="toolkit">
+										<xs:complexType>
+											<xs:attribute name="tag" type="toolkitTag" use="required" />
+											<xs:attribute name="sound" type="xs:string" />
+											<xs:attribute name="numSlots" type="xs:unsignedInt" use="required" />
+											<xs:attribute name="missing" type="xs:string" />
+											<xs:attribute name="present" type="xs:string" />
+											<xs:attribute name="active" type="xs:string" />
+											<xs:attribute name="slot1_x1" type="xs:unsignedInt" />
+											<xs:attribute name="slot1_y1" type="xs:unsignedInt" />
+											<xs:attribute name="slot1_x2" type="xs:unsignedInt" />
+											<xs:attribute name="slot1_y2" type="xs:unsignedInt" />
+											<xs:attribute name="slot2_x1" type="xs:unsignedInt" />
+											<xs:attribute name="slot2_y1" type="xs:unsignedInt" />
+											<xs:attribute name="slot2_x2" type="xs:unsignedInt" />
+											<xs:attribute name="slot2_y2" type="xs:unsignedInt" />
+											<xs:attribute name="slot3_x1" type="xs:unsignedInt" />
+											<xs:attribute name="slot3_y1" type="xs:unsignedInt" />
+											<xs:attribute name="slot3_x2" type="xs:unsignedInt" />
+											<xs:attribute name="slot3_y2" type="xs:unsignedInt" />
+											<xs:attribute name="slot4_x1" type="xs:unsignedInt" />
+											<xs:attribute name="slot4_y1" type="xs:unsignedInt" />
+											<xs:attribute name="slot4_x2" type="xs:unsignedInt" />
+											<xs:attribute name="slot4_y2" type="xs:unsignedInt" />
+											<xs:attribute name="output_x1" type="xs:unsignedInt" />
+											<xs:attribute name="output_y1" type="xs:unsignedInt" />
+											<xs:attribute name="output_x2" type="xs:unsignedShort" />
+											<xs:attribute name="output_y2" type="xs:unsignedInt" />
+											<xs:attribute name="craftButton" type="xs:string" />
+											<xs:attribute name="craftButtonPosX" type="xs:unsignedInt" />
+											<xs:attribute name="craftButtonPosY" type="xs:unsignedInt" />
+											<xs:attribute name="recipeButton" type="xs:string" />
+											<xs:attribute name="recipeButtonPosX" type="xs:unsignedInt" />
+											<xs:attribute name="recipeButtonPosY" type="xs:unsignedInt" />
+											<xs:attribute name="closeX" type="xs:unsignedShort" />
+											<xs:attribute name="closeY" type="xs:unsignedInt" />
+											<xs:attribute name="bg" type="xs:string" use="required" />
+											<xs:attribute name="autofillButton" type="xs:string" />
+											<xs:attribute name="autofillButtonPosX" type="xs:unsignedInt" />
+											<xs:attribute name="autofillButtonPosY" type="xs:unsignedInt" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="trap">
+										<xs:complexType>
+											<xs:attribute name="trigger" type="xs:string" use="required" />
+											<xs:attribute name="casts" type="xs:string" use="required" />
+											<xs:attribute name="level" type="xs:byte" use="required"/>
+											<xs:attribute name="origin" type="xs:string" />
+											<xs:attribute name="originFacing">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="north"/>
+														<xs:enumeration value="east"/>
+														<xs:enumeration value="south"/>
+														<xs:enumeration value="west"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="originMount">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="wall"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="targetIsCaster" type="dodBoolean"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="potion">
+										<xs:complexType>
+											<xs:attribute name="spell" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="wand">
+										<xs:complexType>
+											<xs:attribute name="spell" type="xs:string" use="required" />
+											<xs:attribute name="minCharge" type="xs:unsignedInt" use="required" />
+											<xs:attribute name="maxCharge" type="xs:unsignedInt" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:group ref="triggeredEffects"/>
+								</xs:choice>
+							</xs:sequence>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="iconFile" type="xs:string" use="required" />
+							<xs:attribute name="level" type="xs:byte"/>
+							<xs:attribute name="special" type="dodBoolean" />
+							<xs:attribute name="craftOutput" type="dodBoolean" />
+							<xs:attribute name="maxStack" type="xs:unsignedInt" />
+							<xs:attribute name="type">
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedByte">
+										<xs:minInclusive value="0"/>
+										<xs:maxInclusive value="6"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="artifact" type="dodBoolean" />
+							<xs:attribute name="overrideClassName" type="xs:string" />
+							<xs:attribute name="alchemical" type="dodBoolean" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" name="power">
+						<xs:complexType>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="description" type="xs:string" use="required" />
+							<xs:attribute name="spell" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dredmormod">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="revision">
+						<xs:complexType>
+							<xs:attribute name="text" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="author">
+						<xs:complexType>
+							<xs:attribute name="text" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="name">
+						<xs:complexType>
+							<xs:attribute name="text" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="description">
+						<xs:complexType>
+							<xs:attribute name="text" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="info">
+						<xs:complexType>
+							<xs:attribute name="totalconversion" type="dodBoolean" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="require">
+						<xs:complexType>
+							<xs:attribute name="expansion" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedByte">
+										<xs:minInclusive value="1" />
+									</xs:restriction>									
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="monDB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="monster" type="monster"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="monster">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="idleSprite" type="directionalSprites"/>
+				<xs:element name="attackSprite" type="directionalSprites"/>
+				<xs:element name="hitSprite" type="directionalSprites"/>
+				<xs:element name="beamSprite" type="directionalSprites"/>
+				<xs:element name="castSpellSprite">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="morphSprites">
+					<xs:complexType>
+						<xs:attribute name="eatSprite" type="xs:string" use="required" />
+						<xs:attribute name="drinkSprite" type="xs:string" use="required" />
+						<xs:attribute name="levelUpMSprite" type="xs:string" use="required" />
+						<xs:attribute name="levelUpFSprite" type="xs:string" use="required" />
+						<xs:attribute name="vanishSprite" type="xs:string" use="required" />
+						<xs:attribute name="longIdleSprite" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dieSprite">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="sfx">
+					<xs:complexType>
+						<xs:attribute name="attack" type="xs:string" use="required" />
+						<xs:attribute name="hit" type="xs:string" use="required" />
+						<xs:attribute name="die" type="xs:string" use="required" />
+						<xs:attribute name="spell" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ai">
+					<xs:complexType>
+						<xs:attribute name="aggressiveness" type="xs:unsignedByte" />
+						<xs:attribute name="span" type="xs:unsignedByte" />
+						<xs:attribute name="chicken" type="dodBoolean" />
+						<xs:attribute name="spellPercentage" type="percentage"/>
+						<xs:attribute name="invisible" type="dodBoolean" />
+						<xs:attribute name="stealGold" type="dodBoolean" />
+						<xs:attribute name="stealPercentage" type="percentage"/>
+						<xs:attribute name="canCharm" type="dodBoolean" />
+						<xs:attribute name="canParalyze" type="dodBoolean" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="drop">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="percent" type="percentage" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="onHit">
+					<xs:complexType>
+						<xs:attribute name="spell" type="xs:string" use="required" />
+						<xs:attribute name="oneChanceIn" type="xs:unsignedByte" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="onDeath">
+					<xs:complexType>
+						<xs:attribute name="spell" type="xs:string" use="required" />
+						<xs:attribute name="percent" type="percentage" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="stats">
+					<xs:complexType>
+						<xs:attribute name="numFig" type="xs:unsignedByte" />
+						<xs:attribute name="numWiz" type="xs:unsignedByte" />
+						<xs:attribute name="numRog" type="xs:unsignedByte" />
+						<xs:attribute name="xpValue" type="xs:unsignedInt" />
+						<xs:attribute name="zomby" type="dodBoolean" />
+						<xs:attribute name="steal" type="dodBoolean" />
+						<xs:attribute name="stealGold" type="dodBoolean" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="damage">
+					<xs:complexType>
+						<xs:attributeGroup ref="damageValues"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="secondaryBuff" type="secondaryBuff"/>
+				<xs:element name="resistances">
+					<xs:complexType>
+						<xs:attributeGroup ref="resistanceValues"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="spell">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="info">
+					<xs:complexType>
+						<xs:attribute name="latin" type="xs:string" />
+						<xs:attribute name="text" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="palette">
+					<xs:complexType>
+						<xs:attribute name="tint" type="xs:short" />
+						<xs:attribute name="name" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" name="monster" type="monster"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="level" type="xs:unsignedByte" />
+		<xs:attribute name="displayName" type="xs:string" />
+		<xs:attribute name="tiny" type="xs:unsignedByte" />
+		<xs:attribute name="splat" type="xs:string" />
+		<xs:attribute name="taxa" type="xs:string" />
+		<xs:attribute name="terrain" type="xs:unsignedByte" />
+		<xs:attribute name="special" type="xs:unsignedByte" />
+	</xs:complexType>
+
+	<xs:element name="roomdb">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="room">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="row">
+									<xs:complexType>
+										<xs:attribute name="text" use="required">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[ \.#\d\^WDdSsLIGX!P@i]+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="flags">
+									<xs:complexType>
+										<xs:attribute name="special" type="dodBoolean" />
+										<xs:attribute name="noMonsters" type="dodBoolean" />
+										<xs:attribute name="noTraps" type="dodBoolean" />
+										<xs:attribute name="noBlockers" type="dodBoolean" />
+										<xs:attribute name="noTreasure" type="dodBoolean" />
+										<xs:attribute name="minLevel" type="xs:unsignedInt" />
+										<xs:attribute name="maxLevel" type="xs:unsignedInt" />
+										<xs:attribute name="shop" type="dodBoolean" />
+										<xs:attribute name="zoo" type="dodBoolean" />
+										<xs:attribute name="diggleGod" type="dodBoolean" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="customBlocker">
+									<xs:complexType>
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="can_push" type="dodBoolean" />
+										<xs:attribute name="id" type="xs:string" />
+										<xs:attribute name="name" type="xs:string" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedShort" />
+										<xs:attribute name="description" type="xs:string" />
+										<xs:attribute name="passable" type="dodBoolean" />
+										<xs:attribute name="png" type="xs:string" />
+										<xs:attribute name="pngAnimate" type="xs:unsignedByte" />
+										<xs:attribute name="pngFirst" type="xs:unsignedByte" />
+										<xs:attribute name="pngNum" type="xs:unsignedByte" />
+										<xs:attribute name="pngRate" type="xs:unsignedByte" />
+										<xs:attribute name="pngSprite" type="xs:string" />
+										<xs:attribute name="visBlock" type="dodBoolean" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="customEngraving">
+									<xs:complexType>
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="can_push" type="dodBoolean" />
+										<xs:attribute name="id" type="xs:string" />
+										<xs:attribute name="name" type="xs:string" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedShort" />
+										<xs:attribute name="description" type="xs:string" />
+										<xs:attribute name="passable" type="dodBoolean" />
+										<xs:attribute name="png" type="xs:string" />
+										<xs:attribute name="pngAnimate" type="xs:unsignedByte" />
+										<xs:attribute name="pngFirst" type="xs:unsignedByte" />
+										<xs:attribute name="pngNum" type="xs:unsignedByte" />
+										<xs:attribute name="pngRate" type="xs:unsignedByte" />
+										<xs:attribute name="pngSprite" type="xs:string" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="element">
+									<xs:complexType>
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="can_push" type="dodBoolean" />
+										<xs:attribute name="id" type="xs:string" />
+										<xs:attribute name="name" type="xs:string" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedShort" />
+										<xs:attribute name="contents" type="xs:string" />
+										<xs:attribute name="type" use="required">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="anvil"/>
+													<xs:enumeration value="bbq"/>
+													<xs:enumeration value="boltVending"/>
+													<xs:enumeration value="bookshelf"/>
+													<xs:enumeration value="craftVending"/>
+													<xs:enumeration value="diggleGod"/>
+													<xs:enumeration value="dirt"/>
+													<xs:enumeration value="dredmorStatue"/>
+													<xs:enumeration value="drinkVending"/>
+													<xs:enumeration value="evilChest"/>
+													<xs:enumeration value="foodVending"/>
+													<xs:enumeration value="fountain"/>
+													<xs:enumeration value="freezer"/>
+													<xs:enumeration value="lever"/>
+													<xs:enumeration value="lutefiskStatue"/>
+													<xs:enumeration value="portal"/>
+													<xs:enumeration value="statue"/>
+													<xs:enumeration value="thrownVending"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="monster">
+									<xs:complexType>
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedByte" />
+										<xs:attribute name="name" type="xs:string" />
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="id" type="xs:string" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="loot">
+									<xs:complexType>
+										<xs:attribute name="type" type="xs:string" />
+										<xs:attribute name="subtype" type="xs:string" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedByte" />
+										<xs:attribute name="amount" type="xs:unsignedByte" />
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="id" type="xs:string" />
+										<xs:attribute name="artifact" type="dodBoolean" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="trap">
+									<xs:complexType>
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedByte" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="name" type="xs:string" />
+										<xs:attribute name="at" type="xs:unsignedByte" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="horde">
+									<xs:complexType>
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedByte" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="name" type="xs:string" />
+										<xs:attribute name="min" type="xs:unsignedByte" />
+										<xs:attribute name="additional" type="xs:unsignedByte" />
+										<xs:attribute name="at" type="xs:unsignedByte" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="script">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:choice maxOccurs="unbounded">
+												<xs:element name="condition">
+													<xs:complexType>
+														<xs:attribute name="condition_type" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="activated"/>
+																	<xs:enumeration value="activated_changed"/>
+																	<xs:enumeration value="at"/>
+																	<xs:enumeration value="entered"/>
+																	<xs:enumeration value="isDead"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="id" type="xs:string" />
+														<xs:attribute name="at" type="xs:unsignedByte" />
+														<xs:attribute name="x" type="xs:unsignedByte" />
+														<xs:attribute name="y" type="xs:unsignedByte" />
+														<xs:attribute name="not" type="xs:unsignedByte" />
+														<xs:attribute name="notFound" type="xs:unsignedByte" />
+														<xs:attribute name="activated" type="xs:unsignedByte" />
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="action">
+													<xs:complexType>
+														<xs:attribute name="on" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="success"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="action_type" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="create"/>
+																	<xs:enumeration value="move"/>
+																	<xs:enumeration value="remove"/>
+																	<xs:enumeration value="spell"/>
+																	<xs:enumeration value="ticker"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="id" type="xs:string" />
+														<xs:attribute name="at" type="xs:unsignedByte" />
+														<xs:attribute name="casts" type="xs:string" />
+														<xs:attribute name="create_type">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="customBlocker"/>
+																	<xs:enumeration value="element"/>
+																	<xs:enumeration value="horde"/>
+																	<xs:enumeration value="loot"/>
+																	<xs:enumeration value="monster"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="name" type="xs:string" />
+														<xs:attribute name="pngSprite" type="xs:string" />
+														<xs:attribute name="pngFirst" type="xs:unsignedByte" />
+														<xs:attribute name="pngNum" type="xs:unsignedByte" />
+														<xs:attribute name="pngRate" type="xs:unsignedByte" />
+														<xs:attribute name="passable" type="dodBoolean" />
+														<xs:attribute name="visBlock" type="dodBoolean" />
+														<xs:attribute name="pngAnimate" type="dodBoolean" />
+														<xs:attribute name="can_push" type="dodBoolean" />
+														<xs:attribute name="text" type="xs:string" />
+														<xs:attribute name="targetX" type="xs:unsignedByte" />
+														<xs:attribute name="targetY" type="xs:unsignedByte" />
+														<xs:attribute name="x" type="xs:unsignedByte" />
+														<xs:attribute name="y" type="xs:unsignedByte" />
+														<xs:attribute name="type">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="anvil"/>
+																	<xs:enumeration value="boltVending"/>
+																	<xs:enumeration value="craftVending"/>
+																	<xs:enumeration value="drinkVending"/>
+																	<xs:enumeration value="evilChest"/>
+																	<xs:enumeration value="foodVending"/>
+																	<xs:enumeration value="thrownVending"/>
+																	<!-- For create_type: loot, taken from skill loadout and tested. The commented ones don'e work. (Keep in mind that if subtype is present, this is totally ignored.) -->
+																	<xs:enumeration value="armour"/>
+																	<xs:enumeration value="component"/>
+																	<!--<xs:enumeration value="food"/>-->
+																	<!--<xs:enumeration value="misc"/>-->
+																	<!--<xs:enumeration value="mushroom"/>-->
+																	<xs:enumeration value="potion"/>
+																	<xs:enumeration value="reagent"/>
+																	<!--<xs:enumeration value="toolkit"/>-->
+																	<xs:enumeration value="wand"/>
+																	<xs:enumeration value="weapon"/>
+																	<!-- From R.R., and tested. -->
+																	<!--<xs:enumeration value="gem"/>-->
+																	<xs:enumeration value="artifact"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="sourceX" type="xs:unsignedByte" />
+														<xs:attribute name="sourceY" type="xs:unsignedByte" />
+														<xs:attribute name="targetAt" type="xs:unsignedByte" />
+														<xs:attribute name="subtype" type="xs:string" />
+														<xs:attribute name="png" type="xs:string" />
+														<xs:attribute name="description" type="xs:string" />
+													</xs:complexType>
+												</xs:element>
+											</xs:choice>
+										</xs:sequence>
+										<xs:attribute name="repeat" type="xs:byte" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="customBreakable">
+									<xs:complexType>
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="broken" type="xs:string" use="required" />
+										<xs:attribute name="can_push" type="dodBoolean" />
+										<xs:attribute name="description" type="xs:string" />
+										<xs:attribute name="name" type="xs:string" use="required" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="png" type="xs:string" use="required" />
+										<xs:attribute name="visBlock" type="dodBoolean" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedByte" />
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="pedestal">
+									<xs:complexType>
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="name" type="xs:string" use="required" />
+										<xs:attribute name="text" type="xs:string" use="required" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedByte" />
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+						<xs:attribute name="width" type="xs:unsignedByte" use="required" />
+						<xs:attribute name="height" type="xs:unsignedByte" use="required" />
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="special" type="dodBoolean" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="skillDB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element maxOccurs="unbounded" name="skill">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice maxOccurs="unbounded">
+									<xs:element name="art">
+										<xs:complexType>
+											<xs:attribute name="icon" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="loadout">
+										<xs:complexType>
+											<xs:attribute name="type">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="armour"/>
+														<xs:enumeration value="component"/>
+														<xs:enumeration value="food"/>
+														<xs:enumeration value="misc"/>
+														<xs:enumeration value="mushroom"/>
+														<xs:enumeration value="potion"/>
+														<xs:enumeration value="reagent"/>
+														<xs:enumeration value="toolkit"/>
+														<xs:enumeration value="wand"/>
+														<xs:enumeration value="weapon"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="subtype" type="xs:string" />
+											<xs:attribute name="always" type="dodBoolean" />
+											<xs:attribute name="amount" type="xs:unsignedInt" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="flags">
+										<xs:complexType>
+											<xs:attribute name="deprecated" type="dodBoolean" />
+											<!--<xs:attribute name="noFood" type="dodBoolean" />
+											<xs:attribute name="veganism" type="dodBoolean" />
+											<xs:attribute name="friendlyTaxa" type="xs:string" />-->
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:sequence>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="id" type="xs:unsignedInt" />
+							<xs:attribute name="skillName" type="xs:string" />
+							<xs:attribute name="type" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="warrior"/>
+										<xs:enumeration value="wizard"/>
+										<xs:enumeration value="rogue"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="achievement" type="xs:string" />
+							<xs:attribute name="description" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" name="ability">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice maxOccurs="unbounded">
+									<xs:element name="description">
+										<xs:complexType>
+											<xs:attribute name="text" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="flags">
+										<xs:complexType>
+											<xs:attribute name="vmTheft" type="xs:unsignedByte" />
+											<xs:attribute name="storeTheft" type="xs:unsignedByte" />
+											<xs:attribute name="veganism" type="xs:unsignedByte" />
+											<xs:attribute name="friendlyTaxa" type="xs:string" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="spell">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="primaryBuff" type="primaryBuff"/>
+									<xs:element name="secondaryBuff" type="secondaryBuff"/>
+									<xs:element name="resistBuff">
+										<xs:complexType>
+											<xs:attributeGroup ref="resistanceValues"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="damageBuff">
+										<xs:complexType>
+											<xs:attributeGroup ref="damageValues"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="recoveryBuff">
+										<xs:complexType>
+											<xs:attribute name="amount" type="xs:unsignedByte" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:group ref="triggeredEffects"/>
+								</xs:choice>
+							</xs:sequence>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="icon" type="xs:string" use="required" />
+							<xs:attribute name="skill" type="xs:unsignedInt" />
+							<xs:attribute name="skillName" type="xs:string" />
+							<xs:attribute name="startSkill" type="dodBoolean" />
+							<xs:attribute name="level">
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedByte">
+										<xs:minInclusive value="0"/>
+										<xs:maxInclusive value="7"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="polymorphedOnly" type="dodBoolean" />
+							<xs:attribute name="polymorphTag" type="xs:string" />
+							<xs:attribute name="learnRecipe" type="xs:string" />
+							<xs:attribute name="giveItem" type="xs:string" />
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="sounds">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="sound">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="wave" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="spellDB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="spell">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice minOccurs="0" maxOccurs="unbounded">
+									<xs:element name="requirements">
+										<xs:complexType>
+											<xs:attribute name="mp" type="xs:unsignedInt" use="required" />
+											<xs:attribute name="savvyBonus" type="xs:decimal" />
+											<xs:attribute name="minCost" type="xs:unsignedInt" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="anim" type="anim"/>
+									<xs:element name="effect" type="spellEffect"/>
+									<xs:element name="description">
+										<xs:complexType>
+											<xs:attribute name="text" type="xs:string" />
+											<xs:attribute name="monsterText" type="xs:string" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="ai" type="ai"/>
+									<xs:element name="impact">
+										<xs:complexType>
+											<xs:attribute name="sprite" type="xs:string" use="required" />
+											<xs:attribute name="frames" type="xs:unsignedByte" use="required" />
+											<xs:attribute name="frameRate" type="xs:unsignedByte" use="required" />
+											<xs:attribute name="sfx" type="xs:string" />
+											<xs:attribute name="centerEffect" type="dodBoolean" />
+											<xs:attribute name="firstFrame" type="xs:unsignedByte" />
+											<xs:attribute name="sync" type="dodBoolean" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="buff">
+										<xs:complexType>
+											<xs:sequence minOccurs="0">
+												<xs:choice maxOccurs="unbounded">
+													<xs:element name="halo">
+														<xs:complexType>
+															<xs:attribute name="name" type="xs:string" use="required" />
+															<xs:attribute name="first" type="xs:unsignedByte" />
+															<xs:attribute name="num" type="xs:unsignedByte" use="required" />
+															<xs:attribute name="frameRate" type="xs:unsignedInt" />
+															<xs:attribute name="centerEffect" type="dodBoolean" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="damageBuff">
+														<xs:complexType>
+															<xs:attributeGroup ref="damageValues"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="resistBuff">
+														<xs:complexType>
+															<xs:attributeGroup ref="resistanceValues"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="sightBuff">
+														<xs:complexType>
+															<xs:attribute name="amount" type="xs:byte" use="required" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="primaryBuff" type="primaryBuff"/>
+													<xs:element name="secondaryBuff" type="secondaryBuff"/>
+													<xs:element name="ai" type="ai"/>
+													<xs:element name="invisible"/>
+													<xs:element name="effect" type="spellEffect"/>
+													<xs:element name="mute"/>
+													<xs:element name="polymorph">
+														<xs:complexType>
+															<xs:attribute name="name" type="xs:string" use="required" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="description">
+														<xs:complexType>
+															<xs:attribute name="text" type="xs:string" use="required" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="multibuff">
+														<xs:complexType>
+															<xs:attribute name="amount" type="xs:byte" use="required" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="anim" type="anim"/>
+													<xs:group ref="triggeredEffectsWorkingInBuffs"/>
+												</xs:choice>
+											</xs:sequence>
+											<xs:attribute name="affectsCaster" type="dodBoolean" />
+											<xs:attribute name="allowStacking" type="dodBoolean" />
+											<xs:attribute name="attacks" type="xs:unsignedByte" />
+											<xs:attribute name="bad" type="dodBoolean" />
+											<xs:attribute name="brittle" type="xs:unsignedInt" />
+											<xs:attribute name="destroyOnMove" type="dodBoolean" />
+											<xs:attribute name="diggleGod" type="dodBoolean" />
+											<xs:attribute name="icon" type="xs:string" use="required" />
+											<xs:attribute name="manaUpkeep" type="xs:unsignedInt" />
+											<xs:attribute name="removable" type="dodBoolean" />
+											<xs:attribute name="resistable" type="dodBoolean" />
+											<xs:attribute name="self" type="dodBoolean" />
+											<xs:attribute name="smallIcon" type="xs:string" use="required" />
+											<xs:attribute name="stackSize" type="xs:unsignedInt" />
+											<xs:attribute name="stackable" type="dodBoolean" />
+											<xs:attribute name="time" type="xs:unsignedInt" />
+											<xs:attribute name="useTimer" type="dodBoolean" />
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:sequence>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="type" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="adjacent"/>
+										<xs:enumeration value="adjacentWall"/>
+										<xs:enumeration value="area"/>
+										<xs:enumeration value="beam"/>
+										<xs:enumeration value="beamMissile"/>
+										<xs:enumeration value="cone"/>
+										<xs:enumeration value="diggingBeam"/>
+										<xs:enumeration value="fireball"/>
+										<xs:enumeration value="item"/>
+										<xs:enumeration value="knightlyLeap"/>
+										<xs:enumeration value="missile"/>
+										<xs:enumeration value="rook"/>
+										<xs:enumeration value="self"/>
+										<xs:enumeration value="target"/>
+										<xs:enumeration value="targetAdjacentCorpse"/>
+										<xs:enumeration value="targetCorpse"/>
+										<xs:enumeration value="targetEmptyFloor"/>
+										<xs:enumeration value="targetFloor"/>
+										<xs:enumeration value="targetMonster"/>
+										<xs:enumeration value="template"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="affectsCorpses" type="dodBoolean" />
+							<xs:attribute name="anchored" type="dodBoolean" />
+							<xs:attribute name="attack" type="dodBoolean" />
+							<xs:attribute name="consumeItem" type="dodBoolean" />
+							<xs:attribute name="consumeItemType" >
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="any"/>
+										<xs:enumeration value="armour"/>
+										<xs:enumeration value="artifact"/>
+										<xs:enumeration value="booze"/>
+										<xs:enumeration value="food"/>
+										<xs:enumeration value="gem"/>
+										<xs:enumeration value="misc"/>
+										<xs:enumeration value="mushroom"/>
+										<xs:enumeration value="toolkit"/>
+										<xs:enumeration value="wand"/>
+										<xs:enumeration value="weapon"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="downtime" type="xs:unsignedShort" />
+							<xs:attribute name="icon" type="xs:string" />
+							<xs:attribute name="mine" type="dodBoolean" />
+							<xs:attribute name="mineGlintDensity" type="xs:unsignedByte" />
+							<xs:attribute name="minePermanent" type="dodBoolean" />
+							<xs:attribute name="mineRadius" type="xs:unsignedByte" />
+							<xs:attribute name="mineSprite" type="xs:string" />
+							<xs:attribute name="mineSpriteDrawOrder" type="xs:unsignedByte" />
+							<xs:attribute name="mineSpritePngFirst" type="xs:unsignedByte" />
+							<xs:attribute name="mineSpritePngNum" type="xs:unsignedByte" />
+							<xs:attribute name="mineSpritePngRate" type="xs:unsignedByte" />
+							<xs:attribute name="mineSpritePngSeries" type="xs:string" />
+							<xs:attribute name="mineTimer" type="xs:unsignedByte" />
+							<xs:attribute name="mineUseGlints" type="dodBoolean" />
+							<xs:attribute name="minesMustBeUnobstructed" type="dodBoolean" />
+							<xs:attribute name="radius" type="xs:unsignedByte" />
+							<xs:attribute name="self" type="xs:unsignedByte" />
+							<xs:attribute name="templateID" type="xs:string" />
+							<xs:attribute name="wand" type="dodBoolean" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="fountain">
+						<xs:complexType>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="text" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="diggleGod">
+						<xs:complexType>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="description" type="xs:string" use="required" />
+							<xs:attribute name="art" type="xs:string" use="required" />
+							<xs:attribute name="spell" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Shared types -->
+
+	<xs:simpleType name="dodBoolean">
+		<xs:restriction base="xs:boolean">
+			<xs:pattern value="0|1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="percentage">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="toolkitTag">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="alchemy"/>
+			<xs:enumeration value="grinder"/>
+			<xs:enumeration value="ingot"/>
+			<xs:enumeration value="lathe"/>
+			<xs:enumeration value="lutefisk"/>
+			<xs:enumeration value="smithing"/>
+			<xs:enumeration value="still"/>
+			<xs:enumeration value="tinkerer"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:attributeGroup name="damageValues">
+		<xs:attribute name="acidic" type="xs:unsignedInt" />
+		<xs:attribute name="aethereal" type="xs:unsignedInt" />
+		<xs:attribute name="asphyxiative" type="xs:unsignedInt" />
+		<xs:attribute name="blasting" type="xs:unsignedInt" />
+		<xs:attribute name="conflagratory" type="xs:unsignedInt" />
+		<xs:attribute name="crushing" type="xs:unsignedInt" />
+		<xs:attribute name="existential" type="xs:unsignedInt" />
+		<xs:attribute name="hyperborean" type="xs:unsignedInt" />
+		<xs:attribute name="necromantic" type="xs:unsignedInt" />
+		<xs:attribute name="piercing" type="xs:unsignedInt" />
+		<xs:attribute name="putrefying" type="xs:unsignedInt" />
+		<xs:attribute name="righteous" type="xs:unsignedInt" />
+		<xs:attribute name="slashing" type="xs:unsignedInt" />
+		<xs:attribute name="toxic" type="xs:unsignedInt" />
+		<xs:attribute name="transmutative" type="xs:unsignedInt" />
+		<xs:attribute name="voltaic" type="xs:unsignedInt" />
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="resistanceValues">
+		<xs:attribute name="acidic" type="xs:integer" />
+		<xs:attribute name="aethereal" type="xs:integer" />
+		<xs:attribute name="asphyxiative" type="xs:integer" />
+		<xs:attribute name="blasting" type="xs:integer" />
+		<xs:attribute name="conflagratory" type="xs:integer" />
+		<xs:attribute name="crushing" type="xs:integer" />
+		<xs:attribute name="existential" type="xs:integer" />
+		<xs:attribute name="hyperborean" type="xs:integer" />
+		<xs:attribute name="necromantic" type="xs:integer" />
+		<xs:attribute name="piercing" type="xs:integer" />
+		<xs:attribute name="putrefying" type="xs:integer" />
+		<xs:attribute name="righteous" type="xs:integer" />
+		<xs:attribute name="slashing" type="xs:integer" />
+		<xs:attribute name="toxic" type="xs:integer" />
+		<xs:attribute name="transmutative" type="xs:integer" />
+		<xs:attribute name="voltaic" type="xs:integer" />
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="damageFactors">
+		<xs:attribute name="acidicF" type="xs:decimal" />
+		<xs:attribute name="aetherealF" type="xs:decimal" />
+		<xs:attribute name="asphyxiativeF" type="xs:decimal" />
+		<xs:attribute name="blastingF" type="xs:decimal" />
+		<xs:attribute name="conflagratoryF" type="xs:decimal" />
+		<xs:attribute name="crushingF" type="xs:decimal" />
+		<xs:attribute name="existentialF" type="xs:decimal" />
+		<xs:attribute name="hyperboreanF" type="xs:decimal" />
+		<xs:attribute name="necromanticF" type="xs:decimal" />
+		<xs:attribute name="piercingF" type="xs:decimal" />
+		<xs:attribute name="putrefyingF" type="xs:decimal" />
+		<xs:attribute name="righteousF" type="xs:decimal" />
+		<xs:attribute name="slashingF" type="xs:decimal" />
+		<xs:attribute name="toxicF" type="xs:decimal" />
+		<xs:attribute name="transmutativeF" type="xs:decimal" />
+		<xs:attribute name="voltaicF" type="xs:decimal" />
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="triggeredEffectBaseAttributes">
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="after" type="dodBoolean" />
+		<xs:attribute name="taxa" type="xs:string" />
+	</xs:attributeGroup>
+
+	<xs:complexType name="triggeredEffectWithPercent">
+		<xs:attributeGroup ref="triggeredEffectBaseAttributes"/>
+		<xs:attribute name="percent" default="5" type="percentage"/>
+	</xs:complexType>
+
+	<xs:complexType name="triggeredEffectWithPercentage">
+		<xs:attributeGroup ref="triggeredEffectBaseAttributes"/>
+		<xs:attribute name="percentage" default="100" type="percentage"/>
+	</xs:complexType>
+
+	<xs:group name="triggeredEffects">
+		<xs:choice>
+			<xs:element name="triggerOnCast" type="triggeredEffectWithPercent"/>
+			<xs:element name="triggerOnDodge" type="triggeredEffectWithPercent"/>
+			<xs:element name="blockBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="boozeBuff" type="triggeredEffectWithPercentage"/>
+			<!--<xs:element name="consumeBuff" type="triggeredEffectWithPercentage"/>-->
+			<xs:element name="counterBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="criticalBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="crossbowShotBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="dodgeBuff" type="triggeredEffectWithPercentage"/>
+			<!--<xs:element name="fireCrossbow" type="triggeredEffectWithPercentage"/>-->
+			<xs:element name="foodBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="playerHitEffectBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="targetHitEffectBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="targetKillBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="thrownBuff" type="triggeredEffectWithPercentage"/>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="triggeredEffectsWorkingInBuffs">
+		<xs:choice>
+			<xs:element name="blockBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="boozeBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="counterBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="criticalBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="dodgeBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="foodBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="playerHitEffectBuff" type="triggeredEffectWithPercentage"/>
+			<xs:element name="targetHitEffectBuff" type="triggeredEffectWithPercentage"/>
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="primaryBuff">
+		<xs:attribute name="id" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:unsignedByte">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="5"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="amount" type="xs:integer" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="secondaryBuff">
+		<xs:attribute name="id" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:unsignedByte">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="23"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="amount" type="xs:integer" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="spellEffect">
+		<xs:sequence minOccurs="0">
+			<xs:element maxOccurs="unbounded" name="option">
+				<xs:complexType>
+					<xs:attribute name="name" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="bleed"/>
+					<xs:enumeration value="blind"/>
+					<xs:enumeration value="blink"/>
+					<xs:enumeration value="buff"/>
+					<xs:enumeration value="charm"/>
+					<xs:enumeration value="cleanseArtifact"/>
+					<xs:enumeration value="confuse"/>
+					<xs:enumeration value="consumeBooze"/>
+					<xs:enumeration value="consumeFood"/>
+					<xs:enumeration value="corrupt"/>
+					<xs:enumeration value="create"/>
+					<xs:enumeration value="damage"/>
+					<xs:enumeration value="destroyObject"/>
+					<xs:enumeration value="dig"/>
+					<xs:enumeration value="displace"/>
+					<xs:enumeration value="dot"/>
+					<xs:enumeration value="drain"/>
+					<xs:enumeration value="drainCasterMana"/>
+					<xs:enumeration value="drainMana"/>
+					<xs:enumeration value="fear"/>
+					<xs:enumeration value="grantXp"/>
+					<xs:enumeration value="heal"/>
+					<xs:enumeration value="knock"/>
+					<xs:enumeration value="lockdown"/>
+					<xs:enumeration value="oil"/>
+					<xs:enumeration value="pacify"/>
+					<xs:enumeration value="paralyze"/>
+					<xs:enumeration value="randomizeArtifact"/>
+					<xs:enumeration value="randomizeWand"/>
+					<xs:enumeration value="rechargeAnvil"/>
+					<xs:enumeration value="rechargeWand"/>
+					<xs:enumeration value="removeBuffByName"/>
+					<xs:enumeration value="removeInvisibility"/>
+					<xs:enumeration value="resurrection"/>
+					<xs:enumeration value="rift"/>
+					<xs:enumeration value="rogueSkill"/>
+					<xs:enumeration value="sacrificeArtifact"/>
+					<xs:enumeration value="shout"/>
+					<xs:enumeration value="sleep"/>
+					<xs:enumeration value="spawn"/>
+					<xs:enumeration value="spawnItemAtLocation"/>
+					<xs:enumeration value="spawnItemFromList"/>
+					<xs:enumeration value="spellPoints"/>
+					<xs:enumeration value="stealItem"/>
+					<xs:enumeration value="suction"/>
+					<xs:enumeration value="summon"/>
+					<xs:enumeration value="summonHostile"/>
+					<xs:enumeration value="targetBlink"/>
+					<xs:enumeration value="teleport"/>
+					<xs:enumeration value="trigger"/>
+					<xs:enumeration value="triggerFromList"/>
+					<xs:enumeration value="uncurse"/>
+					<xs:enumeration value="vendingMachineSteal"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="affectsCaster" type="dodBoolean" />
+		<xs:attribute name="affectsCorpses" type="dodBoolean" />
+		<xs:attribute name="after" type="dodBoolean" />
+		<xs:attribute name="amount" type="xs:short" />
+		<xs:attribute name="amountF" type="xs:decimal" />
+		<xs:attribute name="bad" type="dodBoolean" />
+		<xs:attribute name="bleed" type="dodBoolean" />
+		<xs:attribute name="burn" type="dodBoolean" />
+		<xs:attribute name="itemName" type="xs:string" />
+		<xs:attribute name="midas" type="dodBoolean" />
+		<xs:attribute name="monsterType" type="xs:string" />
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="objectSprite" type="xs:string" />
+		<xs:attribute name="percent" type="xs:unsignedByte" />
+		<xs:attribute name="primaryScale" type="xs:unsignedByte" />
+		<xs:attribute name="regenGfx" type="dodBoolean" />
+		<xs:attribute name="requireBuff" type="dodBoolean" />
+		<xs:attribute name="requireBuffOnNotTrigger" type="dodBoolean" />
+		<xs:attribute name="requireBuffOnNotTriggerName" type="xs:string" />
+		<xs:attribute name="requireBuffOnTrigger" type="dodBoolean" />
+		<xs:attribute name="requireBuffOnTriggerName" type="xs:string" />
+		<xs:attribute name="resistable" type="dodBoolean" />
+		<xs:attribute name="secondaryScale" type="xs:unsignedByte" />
+		<xs:attribute name="skipAnimation" type="dodBoolean"/>
+		<xs:attribute name="self" type="dodBoolean" />
+		<xs:attribute name="spell" type="xs:string" />
+		<xs:attribute name="taxa" type="xs:string" />
+		<xs:attribute name="turns" type="xs:unsignedByte" />
+		<xs:attributeGroup ref="damageValues"/>
+		<xs:attributeGroup ref="damageFactors"/>
+	</xs:complexType>
+
+	<xs:complexType name="anim">
+		<xs:attribute name="sprite" type="xs:string" />
+		<xs:attribute name="frames" type="xs:unsignedByte" />
+		<xs:attribute name="firstFrame" type="xs:unsignedByte" />
+		<xs:attribute name="frameRate" type="xs:unsignedInt" />
+		<xs:attribute name="centerEffect" type="dodBoolean" />
+		<xs:attribute name="sfx" type="xs:string" />
+		<xs:attribute name="sync" type="dodBoolean" />
+	</xs:complexType>
+
+	<xs:complexType name="ai">
+		<xs:attribute name="hint" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ally"/>
+					<xs:enumeration value="buff"/>
+					<xs:enumeration value="corpse"/>
+					<xs:enumeration value="mine"/>
+					<xs:enumeration value="self"/>
+					<xs:enumeration value="target"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="directionalSprites">
+		<xs:attribute name="left" type="xs:string" use="required" />
+		<xs:attribute name="right" type="xs:string" use="required" />
+		<xs:attribute name="up" type="xs:string" use="required" />
+		<xs:attribute name="down" type="xs:string" use="required" />
+	</xs:complexType>
+</xs:schema>
