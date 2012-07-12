@@ -665,8 +665,7 @@ namespace DredmorXmlValidation
 				new ElementAttribute( "toolkit", "autofillbutton" ),
 				new ElementAttribute( "toolkit", "bg" ),
 				new ElementAttribute( "toolkit", "craftbutton" ),
-				new ElementAttribute( "toolkit", "recipebutton" ),
-				new ElementAttribute( "trap", "origin" ),
+				new ElementAttribute( "toolkit", "recipebutton" ),				
 				new ElementAttribute( "weapon", "thrown" )
 			);
 
@@ -678,6 +677,10 @@ namespace DredmorXmlValidation
 				new ElementAttribute( "wand", "spell" ),
 				new ElementAttribute( "weapon", "hit" ),
 				new ElementAttribute( "power", "spell" )
+			);
+
+			AddMissingImageOrSpriteFileErrors(
+				new ElementAttribute( "trap", "origin" )
 			);
 
 			AddTriggeredEffectSpellAndTaxaErrors(

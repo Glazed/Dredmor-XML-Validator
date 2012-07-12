@@ -103,7 +103,7 @@
 									</xs:element>
 									<xs:element name="damageBuff">
 										<xs:complexType>
-											<xs:attributeGroup ref="damageValues"/>
+											<xs:attributeGroup ref="damageValuesSigned"/>
 										</xs:complexType>
 									</xs:element>
 									<xs:element name="casts">
@@ -1082,6 +1082,25 @@
 		<xs:attribute name="voltaic" type="xs:unsignedInt" />
 	</xs:attributeGroup>
 
+	<xs:attributeGroup name="damageValuesSigned">
+		<xs:attribute name="acidic" type="xs:integer" />
+		<xs:attribute name="aethereal" type="xs:integer" />
+		<xs:attribute name="asphyxiative" type="xs:integer" />
+		<xs:attribute name="blasting" type="xs:integer" />
+		<xs:attribute name="conflagratory" type="xs:integer" />
+		<xs:attribute name="crushing" type="xs:integer" />
+		<xs:attribute name="existential" type="xs:integer" />
+		<xs:attribute name="hyperborean" type="xs:integer" />
+		<xs:attribute name="necromantic" type="xs:integer" />
+		<xs:attribute name="piercing" type="xs:integer" />
+		<xs:attribute name="putrefying" type="xs:integer" />
+		<xs:attribute name="righteous" type="xs:integer" />
+		<xs:attribute name="slashing" type="xs:integer" />
+		<xs:attribute name="toxic" type="xs:integer" />
+		<xs:attribute name="transmutative" type="xs:integer" />
+		<xs:attribute name="voltaic" type="xs:unsignedInt" />
+	</xs:attributeGroup>
+
 	<xs:attributeGroup name="resistanceValues">
 		<xs:attribute name="acidic" type="xs:integer" />
 		<xs:attribute name="aethereal" type="xs:integer" />
@@ -1142,7 +1161,7 @@
 			<xs:element name="triggerOnDodge" type="triggeredEffectWithPercent"/>
 			<xs:element name="blockBuff" type="triggeredEffectWithPercentage"/>
 			<xs:element name="boozeBuff" type="triggeredEffectWithPercentage"/>
-			<!--<xs:element name="consumeBuff" type="triggeredEffectWithPercentage"/>-->
+			<xs:element name="consumptionBuff" type="triggeredEffectWithPercentage"/>
 			<xs:element name="counterBuff" type="triggeredEffectWithPercentage"/>
 			<xs:element name="criticalBuff" type="triggeredEffectWithPercentage"/>
 			<xs:element name="crossbowShotBuff" type="triggeredEffectWithPercentage"/>
