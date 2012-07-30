@@ -8,6 +8,10 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.1.0
+
+* Made monster dash spells optional.
+
 1.1.0.0:
 
 * Added ecrustDB element to the DredmorSchema.xsd file.
