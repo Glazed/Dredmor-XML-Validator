@@ -74,6 +74,8 @@ namespace DredmorXmlValidation
 					return new SkillXmlResourceValidator( file, resources, expansionResourcesUsed );
 				case "rooms.xml":
 					return new RoomXmlResourceValidator( file, resources, expansionResourcesUsed );
+				case "encrustdb.xml":
+					return new EncrustXmlResourceValidator( file, resources, expansionResourcesUsed );
 				default:
 					throw new InvalidOperationException( "The specified file is not supported." );
 			}
@@ -496,6 +498,18 @@ namespace DredmorXmlValidation
 			}
 		}
 
+		protected void AddMissingPowerErrors( params ElementAttribute[] elementAttributes )
+		{
+			foreach ( var ea in elementAttributes )
+			{
+				AddMissingRelationshipErrors(
+					doc.Root.Descendants( ea.Element, true ).Attributes( ea.Attribute, true ),
+					resources.Powers,
+					"power"
+				);
+			}
+		}
+
 		/// <summary>
 		/// Finds all attributes of elements where some other attribute has one of a number of values.
 		/// </summary>
@@ -662,11 +676,7 @@ namespace DredmorXmlValidation
 				new ElementAttribute( "toolkit", "missing" ),
 				new ElementAttribute( "toolkit", "present" ),
 				new ElementAttribute( "toolkit", "active" ),
-				new ElementAttribute( "toolkit", "autofillbutton" ),
-				new ElementAttribute( "toolkit", "bg" ),
-				new ElementAttribute( "toolkit", "craftbutton" ),
-				new ElementAttribute( "toolkit", "recipebutton" ),				
-				new ElementAttribute( "weapon", "thrown" )
+				new ElementAttribute( "toolkit", "bg" )
 			);
 
 			AddMissingSpellErrors(
@@ -680,7 +690,8 @@ namespace DredmorXmlValidation
 			);
 
 			AddMissingImageOrSpriteFileErrors(
-				new ElementAttribute( "trap", "origin" )
+				new ElementAttribute( "trap", "origin" ),
+				new ElementAttribute( "weapon", "thrown" )
 			);
 
 			AddTriggeredEffectSpellAndTaxaErrors(
@@ -742,7 +753,8 @@ namespace DredmorXmlValidation
 
 			AddMissingSpellErrors(
 				new ElementAttribute( "fountain", "name" ),
-				new ElementAttribute( "effect", "spell" )
+				new ElementAttribute( "effect", "spell" ),
+				new ElementAttribute( "buff", "insufficientFunds" )
 			);
 
 			var itemOptions = FindAttributesWhereRelatedAttributeMatchesList(
@@ -885,7 +897,9 @@ namespace DredmorXmlValidation
 			AddMissingSpellErrors(
 				new ElementAttribute( "ondeath", "spell" ),
 				new ElementAttribute( "onhit", "spell" ),
-				new ElementAttribute( "spell", "spell" )
+				new ElementAttribute( "spell", "spell" ),
+				new ElementAttribute( "dash", "hitSpell" ),
+				new ElementAttribute( "dash", "missSpell" )
 			);
 
 			AddMissingItemErrors(
@@ -1182,6 +1196,37 @@ namespace DredmorXmlValidation
 			AddMissingFileErrors(
 				doc.Root.Elements( "sound", true ).Attributes( "wave", true ),
 				resources.Files.Where( p => p.Type == FileResourceType.Wave )
+			);
+
+			return result;
+		}
+	}
+
+	public class EncrustXmlResourceValidator : XmlResourceValidator
+	{
+		public EncrustXmlResourceValidator( ContentFile file, GameResources resources, GameResources expansionResourcesUsed )
+			: base( file, resources, expansionResourcesUsed )
+		{
+		}
+
+		public override XmlFileValidationErrorList Validate()
+		{
+			AddMissingPowerErrors(
+				new ElementAttribute( "power", "name" )
+			);
+
+			AddMissingItemErrors(
+				new ElementAttribute( "input", "name" )
+			);
+
+			AddSingletonDecendantErrors(
+				doc.Root.Descendants( "encrust", true ),
+				"description",
+				"tool",
+				"skill",
+				"damageBuff",
+				"resistBuff",
+				"instability"
 			);
 
 			return result;

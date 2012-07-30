@@ -20,7 +20,7 @@ namespace DredmorUtilities
 			"itemdb.xml",
 			"mondb.xml",
 			"soundfx.xml",
-			"spelldb.xml",
+			"spelldb.xml"
 		};
 
 		/// <summary>
@@ -35,7 +35,8 @@ namespace DredmorUtilities
 			"spelldb.xml",
 			"skilldb.xml",
 			"rooms.xml",
-			"mod.xml"
+			"mod.xml",
+			"encrustdb.xml"
 		};
 
 		/// <summary>
@@ -59,7 +60,8 @@ namespace DredmorUtilities
 			"text.xml",
 			"tutorial.xml",
 			"tweakdb.xml",
-			"mod.xml"
+			"mod.xml",
+			"encrustdb.xml"
 		};
 
 		/// <summary>

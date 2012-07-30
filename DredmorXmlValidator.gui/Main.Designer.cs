@@ -56,6 +56,7 @@
 			this.coreLocation.Name = "coreLocation";
 			this.coreLocation.Size = new System.Drawing.Size(719, 20);
 			this.coreLocation.TabIndex = 1;
+			this.coreLocation.Text = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\dungeons of dredmor 3";
 			// 
 			// browseForMod
 			// 

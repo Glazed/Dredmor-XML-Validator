@@ -61,6 +61,8 @@ namespace DredmorModValidator
 			{
 				ShowException( ex );
 			}
+
+			Console.Beep();
 		}
 
 		private static void ShowException( Exception ex )

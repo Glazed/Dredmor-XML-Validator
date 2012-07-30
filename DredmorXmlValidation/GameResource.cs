@@ -130,6 +130,18 @@ namespace DredmorXmlValidation
 			}
 		}
 
+		/// <summary>
+		/// A filter on <see cref="ContentResources"/> for powers.
+		/// </summary>
+		[XmlIgnore]
+		public ContentResourceFilter Powers
+		{
+			get
+			{
+				return new ContentResourceFilter( contentResources, ContentResourceType.Power );
+			}
+		}
+
 		#endregion
 
 		/// <summary>
@@ -257,6 +269,7 @@ namespace DredmorXmlValidation
 						break;
 					case "itemdb.xml":
 						PopulateItemResources( doc, file.ExpansionNumber );
+						PopulatePowerResources( doc, file.ExpansionNumber );
 						break;
 					case "mondb.xml":
 						PopulateMonsterResources( doc, file.ExpansionNumber );
@@ -372,6 +385,27 @@ namespace DredmorXmlValidation
 						Name = name,
 						ExpansionNumber = expansionNumber,
 						Type = ContentResourceType.Item
+					}
+				);
+			}
+		}
+
+		private void PopulatePowerResources( XDocument doc, int expansionNumber )
+		{
+			var names =
+				doc.Root.Elements( "power", true )
+				.Select( p => p.GetStringAttribute( "name" ) )
+				.Distinct()
+				.Where( p => !String.IsNullOrWhiteSpace( p ) );
+
+			foreach ( var name in names )
+			{
+				this.contentResources.Add(
+					new ContentResource
+					{
+						Name = name,
+						ExpansionNumber = expansionNumber,
+						Type = ContentResourceType.Power
 					}
 				);
 			}
@@ -505,7 +539,8 @@ namespace DredmorXmlValidation
 		Taxa,
 		Spell,
 		Craft,
-		Sound
+		Sound,
+		Power
 	}
 
 	/// <summary>

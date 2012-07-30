@@ -206,7 +206,7 @@
 								<xs:simpleType>
 									<xs:restriction base="xs:unsignedByte">
 										<xs:minInclusive value="0"/>
-										<xs:maxInclusive value="6"/>
+										<xs:maxInclusive value="8"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:attribute>
@@ -330,7 +330,15 @@
 				</xs:element>
 				<xs:element name="drop">
 					<xs:complexType>
-						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="name" type="xs:string" />
+						<xs:attribute name="type">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="artifact"/>
+									<xs:enumeration value="zorkmids"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
 						<xs:attribute name="percent" type="percentage" />
 					</xs:complexType>
 				</xs:element>
@@ -362,6 +370,7 @@
 						<xs:attributeGroup ref="damageValues"/>
 					</xs:complexType>
 				</xs:element>
+				<xs:element name="primaryBuff" type="primaryBuff"/>
 				<xs:element name="secondaryBuff" type="secondaryBuff"/>
 				<xs:element name="resistances">
 					<xs:complexType>
@@ -385,6 +394,22 @@
 						<xs:attribute name="name" type="xs:string" />
 					</xs:complexType>
 				</xs:element>
+				<xs:element name="sight">
+					<xs:complexType>
+						<xs:attribute name="cone" type="xs:unsignedShort" use="required" />
+						<xs:attribute name="modifier" type="xs:decimal" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dash">
+					<xs:complexType>
+						<xs:attribute name="hitSpell" type="xs:string" use="required" />
+						<xs:attribute name="missSpell" type="xs:string" use="required" />
+						<xs:attribute name="chance" type="xs:unsignedByte" use="required" />
+						<xs:attribute name="interruptable" type="dodBoolean" use="required" />
+						<xs:attribute name="speed" type="xs:unsignedByte" use="required" />
+						<xs:attribute name="minDistance" type="xs:unsignedByte" use="required" />
+					</xs:complexType>
+				</xs:element>
 				<xs:element maxOccurs="unbounded" name="monster" type="monster"/>
 			</xs:choice>
 		</xs:sequence>
@@ -394,6 +419,10 @@
 		<xs:attribute name="tiny" type="xs:unsignedByte" />
 		<xs:attribute name="splat" type="xs:string" />
 		<xs:attribute name="taxa" type="xs:string" />
+		<xs:attribute name="diggleHell" type="dodBoolean" />
+		<xs:attribute name="named" type="dodBoolean" />
+		<xs:attribute name="horde" type="dodBoolean" />
+		<xs:attribute name="maxSpawns" type="xs:unsignedByte" />
 		<xs:attribute name="terrain" type="xs:unsignedByte" />
 		<xs:attribute name="special" type="xs:unsignedByte" />
 	</xs:complexType>
@@ -401,7 +430,7 @@
 	<xs:element name="roomdb">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs="unbounded" name="room">
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="room">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:choice maxOccurs="unbounded">
@@ -799,6 +828,11 @@
 										</xs:complexType>
 									</xs:element>
 									<xs:group ref="triggeredEffects"/>
+									<xs:element name="zorkmidBuff">
+										<xs:complexType>
+											<xs:attribute name="percent" type="xs:decimal" use="required" />
+										</xs:complexType>
+									</xs:element>
 								</xs:choice>
 							</xs:sequence>
 							<xs:attribute name="name" type="xs:string" use="required" />
@@ -848,9 +882,10 @@
 								<xs:choice minOccurs="0" maxOccurs="unbounded">
 									<xs:element name="requirements">
 										<xs:complexType>
-											<xs:attribute name="mp" type="xs:unsignedInt" use="required" />
+											<xs:attribute name="mp" type="xs:unsignedInt" />
 											<xs:attribute name="savvyBonus" type="xs:decimal" />
 											<xs:attribute name="minCost" type="xs:unsignedInt" />
+											<xs:attribute name="zorkmids" type="xs:unsignedInt" />
 										</xs:complexType>
 									</xs:element>
 									<xs:element name="anim" type="anim"/>
@@ -924,6 +959,20 @@
 													</xs:element>
 													<xs:element name="anim" type="anim"/>
 													<xs:group ref="triggeredEffectsWorkingInBuffs"/>
+													<xs:element name="payback">
+														<xs:complexType>
+															<xs:attribute name="secondaryScale" type="xs:unsignedByte" />
+															<xs:attribute name="paybackF" type="xs:decimal" use="required" />
+															<xs:attribute name="primaryScale" type="xs:unsignedByte" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="zorkmidAbsorption">
+														<xs:complexType>
+															<xs:attribute name="zorkmidsPerDamage" type="xs:unsignedByte" use="required" />
+															<xs:attribute name="damageCap" type="xs:unsignedByte" use="required" />
+															<xs:attribute name="maxRatio" type="xs:decimal" use="required" />
+														</xs:complexType>
+													</xs:element>
 												</xs:choice>
 											</xs:sequence>
 											<xs:attribute name="affectsCaster" type="dodBoolean" />
@@ -943,6 +992,8 @@
 											<xs:attribute name="stackable" type="dodBoolean" />
 											<xs:attribute name="time" type="xs:unsignedInt" />
 											<xs:attribute name="useTimer" type="dodBoolean" />
+											<xs:attribute name="zorkmidUpkeep" type="xs:integer" />
+											<xs:attribute name="insufficientFunds" type="xs:string"/>
 										</xs:complexType>
 									</xs:element>
 								</xs:choice>
@@ -969,6 +1020,7 @@
 										<xs:enumeration value="targetCorpse"/>
 										<xs:enumeration value="targetEmptyFloor"/>
 										<xs:enumeration value="targetFloor"/>
+										<xs:enumeration value="targetFloorItem"/>
 										<xs:enumeration value="targetMonster"/>
 										<xs:enumeration value="template"/>
 									</xs:restriction>
@@ -1014,6 +1066,7 @@
 							<xs:attribute name="self" type="xs:unsignedByte" />
 							<xs:attribute name="templateID" type="xs:string" />
 							<xs:attribute name="wand" type="dodBoolean" />
+							<xs:attribute name="noAnimation" type="dodBoolean" />
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="fountain">
@@ -1028,6 +1081,100 @@
 							<xs:attribute name="description" type="xs:string" use="required" />
 							<xs:attribute name="art" type="xs:string" use="required" />
 							<xs:attribute name="spell" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="encrustDB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element maxOccurs="unbounded" name="unstableEffect">
+						<xs:complexType>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="spell" type="xs:string" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" name="encrust">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice maxOccurs="unbounded">
+									<xs:element name="description">
+										<xs:complexType>
+											<xs:attribute name="text" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="tool">
+										<xs:complexType>
+											<xs:attribute name="tag" type="toolkitTag" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="slot">
+										<xs:complexType>
+											<xs:attribute name="type" use="required">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="chest"/>
+														<xs:enumeration value="feet"/>
+														<xs:enumeration value="hands"/>
+														<xs:enumeration value="head"/>
+														<xs:enumeration value="legs"/>
+														<xs:enumeration value="neck"/>
+														<xs:enumeration value="ranged"/>
+														<xs:enumeration value="ring"/>
+														<xs:enumeration value="shield"/>
+														<xs:enumeration value="waist"/>
+														<xs:enumeration value="weapon"/>
+													</xs:restriction>													
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="input">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="skill">
+										<xs:complexType>
+											<xs:attribute name="level" type="xs:unsignedByte" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="power">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required" />
+											<xs:attribute name="chance" type="xs:decimal" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="damageBuff">
+										<xs:complexType>
+											<xs:attributeGroup ref="damageValuesSigned"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="resistBuff">
+										<xs:complexType>
+											<xs:attributeGroup ref="resistanceValues"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="primaryBuff" type="primaryBuff"/>
+									<xs:element name="secondaryBuff" type="secondaryBuff"/>									
+									<xs:element name="encrustWith">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="instability">
+										<xs:complexType>
+											<xs:attribute name="amount" type="xs:byte" use="required" />
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:sequence>
+							<xs:attribute name="name" type="xs:string" use="required" />
+							<xs:attribute name="hidden" type="dodBoolean" />
 						</xs:complexType>
 					</xs:element>
 				</xs:choice>
@@ -1223,6 +1370,7 @@
 		<xs:attribute name="type">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
+					<xs:enumeration value="ascendDungeonLevel"/>
 					<xs:enumeration value="bleed"/>
 					<xs:enumeration value="blind"/>
 					<xs:enumeration value="blink"/>
@@ -1230,6 +1378,7 @@
 					<xs:enumeration value="charm"/>
 					<xs:enumeration value="cleanseArtifact"/>
 					<xs:enumeration value="confuse"/>
+					<xs:enumeration value="consumeAnything"/>
 					<xs:enumeration value="consumeBooze"/>
 					<xs:enumeration value="consumeFood"/>
 					<xs:enumeration value="corrupt"/>
@@ -1242,20 +1391,29 @@
 					<xs:enumeration value="drain"/>
 					<xs:enumeration value="drainCasterMana"/>
 					<xs:enumeration value="drainMana"/>
+					<xs:enumeration value="dropItem"/>
+					<xs:enumeration value="drunkenness"/>
 					<xs:enumeration value="fear"/>
+					<xs:enumeration value="findRecipe"/>
+					<xs:enumeration value="grabItem"/>
 					<xs:enumeration value="grantXp"/>
 					<xs:enumeration value="heal"/>
 					<xs:enumeration value="knock"/>
 					<xs:enumeration value="lockdown"/>
+					<xs:enumeration value="manipulateObject"/>
+					<xs:enumeration value="moveRandomCurse"/>
 					<xs:enumeration value="oil"/>
 					<xs:enumeration value="pacify"/>
 					<xs:enumeration value="paralyze"/>
 					<xs:enumeration value="randomizeArtifact"/>
+					<xs:enumeration value="randomizePotion"/>
 					<xs:enumeration value="randomizeWand"/>
+					<xs:enumeration value="randomUncurse"/>
 					<xs:enumeration value="rechargeAnvil"/>
 					<xs:enumeration value="rechargeWand"/>
 					<xs:enumeration value="removeBuffByName"/>
 					<xs:enumeration value="removeInvisibility"/>
+					<xs:enumeration value="removeMonster"/>
 					<xs:enumeration value="resurrection"/>
 					<xs:enumeration value="rift"/>
 					<xs:enumeration value="rogueSkill"/>
@@ -1272,6 +1430,7 @@
 					<xs:enumeration value="summonHostile"/>
 					<xs:enumeration value="targetBlink"/>
 					<xs:enumeration value="teleport"/>
+					<xs:enumeration value="transformMonster"/>
 					<xs:enumeration value="trigger"/>
 					<xs:enumeration value="triggerFromList"/>
 					<xs:enumeration value="uncurse"/>

@@ -114,7 +114,7 @@ namespace DredmorUtilities
 			return collection;
 		}
 
-		// <summary>
+		/// <summary>
 		/// Returns a collection of the child elements for this document or element, in document order. Optionally ignores case.
 		/// </summary>
 		/// <param name="element"></param>
