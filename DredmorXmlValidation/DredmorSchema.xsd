@@ -1457,6 +1457,7 @@
 		<xs:attribute name="name" type="xs:string" />
 		<xs:attribute name="objectSprite" type="xs:string" />
 		<xs:attribute name="percent" type="xs:unsignedByte" />
+		<xs:attribute name="percentage" type="xs:unsignedByte" />
 		<xs:attribute name="primaryScale" type="xs:unsignedByte" />
 		<xs:attribute name="regenGfx" type="dodBoolean" />
 		<xs:attribute name="requireBuff" type="dodBoolean" />
