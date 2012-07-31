@@ -77,11 +77,14 @@ namespace DredmorModValidator
 
 		private void WriteExpansionsUsed( ModValidationResult result )
 		{
-			this.expansionNumbers.Text =
-				String.Join(
-					", ",
-					result.ExpansionNumbersUsed
-				);
+			if ( result.ExpansionNumbersUsed != null )
+			{
+				this.expansionNumbers.Text =
+					String.Join(
+						", ",
+						result.ExpansionNumbersUsed
+					);
+			}
 		}
 
 		private static void ShowException( Exception ex )

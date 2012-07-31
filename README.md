@@ -8,6 +8,15 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.2.0
+
+* Added validation for unstableEffect spells.
+* Removed default value for path in DredmorXmlValidator.
+* Added spell effect: swapWithMonster
+* Added buffTag attribute to spell effects.
+* Added consumeItemType: potion
+* In a previous version, a beep was added at the completion of validation for the Core Validator.
+
 1.1.1.0
 
 * Made monster dash spells optional.

@@ -62,6 +62,7 @@ boozeBuff
 brittle
 broken
 buff
+buffTag
 burn
 can_push
 canCharm
@@ -446,6 +447,7 @@ success
 suction
 summon
 summonHostile
+swapWithMonster
 sync
 tag
 target

@@ -886,6 +886,7 @@
 											<xs:attribute name="savvyBonus" type="xs:decimal" />
 											<xs:attribute name="minCost" type="xs:unsignedInt" />
 											<xs:attribute name="zorkmids" type="xs:unsignedInt" />
+											<xs:attribute name="booze" type="xs:unsignedInt" />
 										</xs:complexType>
 									</xs:element>
 									<xs:element name="anim" type="anim"/>
@@ -994,6 +995,7 @@
 											<xs:attribute name="useTimer" type="dodBoolean" />
 											<xs:attribute name="zorkmidUpkeep" type="xs:integer" />
 											<xs:attribute name="insufficientFunds" type="xs:string"/>
+											<xs:attribute name="tag" type="xs:string"/>
 										</xs:complexType>
 									</xs:element>
 								</xs:choice>
@@ -1041,6 +1043,7 @@
 										<xs:enumeration value="gem"/>
 										<xs:enumeration value="misc"/>
 										<xs:enumeration value="mushroom"/>
+										<xs:enumeration value="potion"/>
 										<xs:enumeration value="toolkit"/>
 										<xs:enumeration value="wand"/>
 										<xs:enumeration value="weapon"/>
@@ -1428,6 +1431,7 @@
 					<xs:enumeration value="suction"/>
 					<xs:enumeration value="summon"/>
 					<xs:enumeration value="summonHostile"/>
+					<xs:enumeration value="swapWithMonster"/>
 					<xs:enumeration value="targetBlink"/>
 					<xs:enumeration value="teleport"/>
 					<xs:enumeration value="transformMonster"/>
@@ -1446,6 +1450,7 @@
 		<xs:attribute name="bad" type="dodBoolean" />
 		<xs:attribute name="bleed" type="dodBoolean" />
 		<xs:attribute name="burn" type="dodBoolean" />
+		<xs:attribute name="buffTag" type="xs:string" />
 		<xs:attribute name="itemName" type="xs:string" />
 		<xs:attribute name="midas" type="dodBoolean" />
 		<xs:attribute name="monsterType" type="xs:string" />

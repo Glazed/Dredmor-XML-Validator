@@ -570,6 +570,35 @@ namespace DredmorXmlValidation
 		}
 
 		/// <summary>
+		/// Checks the elements for missing required child elements.
+		/// </summary>
+		/// <param name="elements">The elements to check.</param>
+		/// <param name="elementNames">An array of child element names that are required.</param>
+		protected void AddRequiredChildErrors( IEnumerable<XElement> elements, params string[] childElements )
+		{
+			foreach ( var elementName in childElements )
+			{
+				var badOnes =
+						elements.Where(
+							parent => parent.Elements()
+								.Where( descendant => elementName.ToLower() == descendant.Name.LocalName.ToLower() ).Count() == 0
+						);
+
+				foreach ( var badElement in badOnes )
+				{
+					result.Errors.Add(
+						CreateError(
+							badElement,
+							"The element, '{0}', must have this child element: {1}.",
+							badElement.Name.LocalName,
+							elementName
+						)
+					);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Checks the elements for multiples of the same child elements where only one should be allowed.
 		/// </summary>
 		/// <param name="elements">The elements to check.</param>
@@ -1215,6 +1244,10 @@ namespace DredmorXmlValidation
 				new ElementAttribute( "power", "name" )
 			);
 
+			AddMissingSpellErrors(
+				new ElementAttribute( "unstableEffect", "spell" )
+			);
+
 			AddMissingItemErrors(
 				new ElementAttribute( "input", "name" )
 			);
@@ -1227,6 +1260,13 @@ namespace DredmorXmlValidation
 				"damageBuff",
 				"resistBuff",
 				"instability"
+			);
+
+			AddRequiredChildErrors(
+				doc.Root.Descendants( "encrust", true ),
+				"description",
+				"tool",
+				"skill"
 			);
 
 			return result;
