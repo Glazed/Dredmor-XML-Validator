@@ -1417,6 +1417,7 @@
 					<xs:enumeration value="removeBuffByName"/>
 					<xs:enumeration value="removeInvisibility"/>
 					<xs:enumeration value="removeMonster"/>
+					<xs:enumeration value="resetRandomCooldown"/>
 					<xs:enumeration value="resurrection"/>
 					<xs:enumeration value="rift"/>
 					<xs:enumeration value="rogueSkill"/>

@@ -8,6 +8,10 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.2.2
+
+* Added resetRandomCooldown spell effect type.
+
 1.1.2.1
 
 * Added "percentage" to spell effects which now works tha same as "percent".
