@@ -54,6 +54,7 @@ blastingF
 bleed
 blind
 blink
+blockAction
 blockBuff
 boltVending
 bookshelf
@@ -72,6 +73,7 @@ casts
 castSpellSprite
 centerEffect
 chance
+charge
 charm
 chest
 chicken
@@ -337,6 +339,7 @@ randomizePotion
 randomizeWand
 randoms
 randomUncurse
+range
 ranged
 reagent
 rechargeAnvil
@@ -463,6 +466,7 @@ targetHitEffectBuff
 targetIsCaster
 targetKillBuff
 targetMonster
+targetSelf
 targetX
 targetY
 taxa
@@ -522,5 +526,6 @@ zoo
 zorkmidAbsorption
 zorkmidBuff
 zorkmids
+zorkmidScaleF
 zorkmidsPerDamage
 zorkmidUpkeep

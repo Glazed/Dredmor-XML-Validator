@@ -8,6 +8,11 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.2.3
+
+* Added charge (spell charging) for monsters.
+* Made chance and interruptable optional for dash since they are optional for charge, and I assume these attributes have a default value there, too.
+
 1.1.2.2
 
 * Added resetRandomCooldown spell effect type.

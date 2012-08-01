@@ -404,10 +404,21 @@
 					<xs:complexType>
 						<xs:attribute name="hitSpell" type="xs:string" />
 						<xs:attribute name="missSpell" type="xs:string" />
-						<xs:attribute name="chance" type="xs:unsignedByte" use="required" />
-						<xs:attribute name="interruptable" type="dodBoolean" use="required" />
+						<xs:attribute name="chance" type="xs:unsignedByte" />
+						<xs:attribute name="interruptable" type="dodBoolean" />
 						<xs:attribute name="speed" type="xs:unsignedByte" use="required" />
 						<xs:attribute name="minDistance" type="xs:unsignedByte" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="charge">
+					<xs:complexType>
+						<xs:attribute name="chance" type="xs:unsignedByte" />
+						<xs:attribute name="turns" type="xs:unsignedByte" use="required" />
+						<xs:attribute name="spell" type="xs:string" use="required" />
+						<xs:attribute name="interruptable" type="dodBoolean" />
+						<xs:attribute name="blockAction" type="dodBoolean" />
+						<xs:attribute name="range" type="xs:unsignedByte" />
+						<xs:attribute name="targetSelf" type="dodBoolean" />
 					</xs:complexType>
 				</xs:element>
 				<xs:element maxOccurs="unbounded" name="monster" type="monster"/>
@@ -887,6 +898,7 @@
 											<xs:attribute name="minCost" type="xs:unsignedInt" />
 											<xs:attribute name="zorkmids" type="xs:unsignedInt" />
 											<xs:attribute name="booze" type="xs:unsignedInt" />
+											<xs:attribute name="zorkmidScaleF" type="xs:decimal"/>
 										</xs:complexType>
 									</xs:element>
 									<xs:element name="anim" type="anim"/>
