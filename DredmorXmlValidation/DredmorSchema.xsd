@@ -175,6 +175,7 @@
 												<xs:simpleType>
 													<xs:restriction base="xs:string">
 														<xs:enumeration value="wall"/>
+														<xs:enumeration value="floor"/>
 													</xs:restriction>
 												</xs:simpleType>
 											</xs:attribute>
@@ -262,7 +263,7 @@
 								<xs:simpleType>
 									<xs:restriction base="xs:unsignedByte">
 										<xs:minInclusive value="1" />
-									</xs:restriction>									
+									</xs:restriction>
 								</xs:simpleType>
 							</xs:attribute>
 						</xs:complexType>
@@ -318,7 +319,7 @@
 				<xs:element name="ai">
 					<xs:complexType>
 						<xs:attribute name="aggressiveness" type="xs:unsignedByte" />
-						<xs:attribute name="span" type="xs:unsignedByte" />
+						<xs:attribute name="span" type="xs:unsignedShort" />
 						<xs:attribute name="chicken" type="dodBoolean" />
 						<xs:attribute name="spellPercentage" type="percentage"/>
 						<xs:attribute name="invisible" type="dodBoolean" />
@@ -470,6 +471,29 @@
 										<xs:attribute name="diggleGod" type="dodBoolean" />
 									</xs:complexType>
 								</xs:element>
+								<xs:element name="clock">
+									<xs:complexType>
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="can_push" type="dodBoolean" />
+										<xs:attribute name="id" type="xs:string" />
+										<xs:attribute name="name" type="xs:string" />
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedShort" />
+										<xs:attribute name="description" type="xs:string" />
+										<xs:attribute name="passable" type="dodBoolean" />
+										<xs:attribute name="png" type="xs:string" />
+										<xs:attribute name="pngAnimate" type="xs:unsignedByte" />
+										<xs:attribute name="pngFirst" type="xs:unsignedByte" />
+										<xs:attribute name="pngNum" type="xs:unsignedByte" />
+										<xs:attribute name="pngRate" type="xs:unsignedShort" />
+										<xs:attribute name="pngSprite" type="xs:string" />
+										<xs:attribute name="visBlock" type="dodBoolean" />
+										<xs:attribute name="started" type="dodBoolean" />
+										<xs:attribute name="initial" type="xs:unsignedByte" />
+										<xs:attribute name="remaining" type="xs:unsignedByte" />
+									</xs:complexType>
+								</xs:element>
 								<xs:element name="customBlocker">
 									<xs:complexType>
 										<xs:attribute name="at" type="xs:unsignedByte" />
@@ -485,7 +509,7 @@
 										<xs:attribute name="pngAnimate" type="xs:unsignedByte" />
 										<xs:attribute name="pngFirst" type="xs:unsignedByte" />
 										<xs:attribute name="pngNum" type="xs:unsignedByte" />
-										<xs:attribute name="pngRate" type="xs:unsignedByte" />
+										<xs:attribute name="pngRate" type="xs:unsignedShort" />
 										<xs:attribute name="pngSprite" type="xs:string" />
 										<xs:attribute name="visBlock" type="dodBoolean" />
 									</xs:complexType>
@@ -505,7 +529,7 @@
 										<xs:attribute name="pngAnimate" type="xs:unsignedByte" />
 										<xs:attribute name="pngFirst" type="xs:unsignedByte" />
 										<xs:attribute name="pngNum" type="xs:unsignedByte" />
-										<xs:attribute name="pngRate" type="xs:unsignedByte" />
+										<xs:attribute name="pngRate" type="xs:unsignedShort" />
 										<xs:attribute name="pngSprite" type="xs:string" />
 									</xs:complexType>
 								</xs:element>
@@ -540,9 +564,26 @@
 													<xs:enumeration value="portal"/>
 													<xs:enumeration value="statue"/>
 													<xs:enumeration value="thrownVending"/>
+													<xs:enumeration value="wizardControls"/>
+													<xs:enumeration value="wizardGraffiti"/>
+													<xs:enumeration value="wizardKey"/>
+													<xs:enumeration value="wizardPedestal"/>
+													<xs:enumeration value="wizardPortal"/>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="magicBlocker">
+									<xs:complexType>
+										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="can_push" type="dodBoolean" />
+										<xs:attribute name="id" type="xs:string" />
+										<xs:attribute name="magicUid" type="xs:unsignedByte"/>
+										<xs:attribute name="percent" type="percentage" />
+										<xs:attribute name="x" type="xs:unsignedByte" />
+										<xs:attribute name="y" type="xs:unsignedShort" />
+										<xs:attribute name="visBlock" type="dodBoolean" />
 									</xs:complexType>
 								</xs:element>
 								<xs:element name="monster">
@@ -575,6 +616,8 @@
 										<xs:attribute name="percent" type="percentage" />
 										<xs:attribute name="name" type="xs:string" />
 										<xs:attribute name="at" type="xs:unsignedByte" />
+										<xs:attribute name="can_push" type="dodBoolean" />
+										<xs:attribute name="id" type="xs:string" />
 									</xs:complexType>
 								</xs:element>
 								<xs:element name="horde">
@@ -601,17 +644,32 @@
 																	<xs:enumeration value="activated_changed"/>
 																	<xs:enumeration value="at"/>
 																	<xs:enumeration value="entered"/>
+																	<xs:enumeration value="exited"/>
+																	<xs:enumeration value="event"/>
+																	<xs:enumeration value="isAlive"/>
 																	<xs:enumeration value="isDead"/>
+																	<xs:enumeration value="started"/>
+																	<xs:enumeration value="stopped"/>
 																</xs:restriction>
 															</xs:simpleType>
 														</xs:attribute>
 														<xs:attribute name="id" type="xs:string" />
 														<xs:attribute name="at" type="xs:unsignedByte" />
-														<xs:attribute name="x" type="xs:unsignedByte" />
-														<xs:attribute name="y" type="xs:unsignedByte" />
+														<xs:attribute name="x" type="xs:short" />
+														<xs:attribute name="y" type="xs:short" />
 														<xs:attribute name="not" type="xs:unsignedByte" />
 														<xs:attribute name="notFound" type="xs:unsignedByte" />
 														<xs:attribute name="activated" type="xs:unsignedByte" />
+														<xs:attribute name="started" type="dodBoolean" />
+														<xs:attribute name="stopped" type="dodBoolean" />
+														<xs:attribute name="eventType">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="hit"/>
+																	<xs:enumeration value="broken"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
 													</xs:complexType>
 												</xs:element>
 												<xs:element name="action">
@@ -629,6 +687,7 @@
 																	<xs:enumeration value="create"/>
 																	<xs:enumeration value="move"/>
 																	<xs:enumeration value="remove"/>
+																	<xs:enumeration value="set"/>
 																	<xs:enumeration value="spell"/>
 																	<xs:enumeration value="ticker"/>
 																</xs:restriction>
@@ -640,11 +699,14 @@
 														<xs:attribute name="create_type">
 															<xs:simpleType>
 																<xs:restriction base="xs:string">
+																	<xs:enumeration value="clock"/>
 																	<xs:enumeration value="customBlocker"/>
+																	<xs:enumeration value="customEngraving"/>
 																	<xs:enumeration value="element"/>
 																	<xs:enumeration value="horde"/>
 																	<xs:enumeration value="loot"/>
 																	<xs:enumeration value="monster"/>
+																	<xs:enumeration value="trap"/>
 																</xs:restriction>
 															</xs:simpleType>
 														</xs:attribute>
@@ -652,16 +714,16 @@
 														<xs:attribute name="pngSprite" type="xs:string" />
 														<xs:attribute name="pngFirst" type="xs:unsignedByte" />
 														<xs:attribute name="pngNum" type="xs:unsignedByte" />
-														<xs:attribute name="pngRate" type="xs:unsignedByte" />
+														<xs:attribute name="pngRate" type="xs:unsignedShort" />
 														<xs:attribute name="passable" type="dodBoolean" />
 														<xs:attribute name="visBlock" type="dodBoolean" />
 														<xs:attribute name="pngAnimate" type="dodBoolean" />
 														<xs:attribute name="can_push" type="dodBoolean" />
 														<xs:attribute name="text" type="xs:string" />
-														<xs:attribute name="targetX" type="xs:unsignedByte" />
-														<xs:attribute name="targetY" type="xs:unsignedByte" />
-														<xs:attribute name="x" type="xs:unsignedByte" />
-														<xs:attribute name="y" type="xs:unsignedByte" />
+														<xs:attribute name="targetX" type="xs:short" />
+														<xs:attribute name="targetY" type="xs:short" />
+														<xs:attribute name="x" type="xs:short" />
+														<xs:attribute name="y" type="xs:short" />
 														<xs:attribute name="type">
 															<xs:simpleType>
 																<xs:restriction base="xs:string">
@@ -689,12 +751,26 @@
 																</xs:restriction>
 															</xs:simpleType>
 														</xs:attribute>
-														<xs:attribute name="sourceX" type="xs:unsignedByte" />
-														<xs:attribute name="sourceY" type="xs:unsignedByte" />
+														<xs:attribute name="sourceX" type="xs:short" />
+														<xs:attribute name="sourceY" type="xs:short" />
+														<xs:attribute name="sourceAt" type="xs:unsignedByte" />
 														<xs:attribute name="targetAt" type="xs:unsignedByte" />
 														<xs:attribute name="subtype" type="xs:string" />
 														<xs:attribute name="png" type="xs:string" />
 														<xs:attribute name="description" type="xs:string" />
+														<xs:attribute name="set_type">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="passable"/>
+																	<xs:enumeration value="started"/>
+																	<xs:enumeration value="stopped"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="value" type="dodBoolean"/>
+														<xs:attribute name="started" type="dodBoolean"/>
+														<xs:attribute name="initial" type="xs:unsignedByte"/>
+														<xs:attribute name="remaining" type="xs:unsignedByte"/>
 													</xs:complexType>
 												</xs:element>
 											</xs:choice>
@@ -731,6 +807,7 @@
 						<xs:attribute name="height" type="xs:unsignedByte" use="required" />
 						<xs:attribute name="name" type="xs:string" use="required" />
 						<xs:attribute name="special" type="dodBoolean" />
+						<xs:attribute name="useFixedName" type="xs:string"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
@@ -1036,6 +1113,7 @@
 										<xs:enumeration value="targetFloor"/>
 										<xs:enumeration value="targetFloorItem"/>
 										<xs:enumeration value="targetMonster"/>
+										<xs:enumeration value="target_zombie"/>
 										<xs:enumeration value="template"/>
 									</xs:restriction>
 								</xs:simpleType>
@@ -1143,7 +1221,7 @@
 														<xs:enumeration value="shield"/>
 														<xs:enumeration value="waist"/>
 														<xs:enumeration value="weapon"/>
-													</xs:restriction>													
+													</xs:restriction>
 												</xs:simpleType>
 											</xs:attribute>
 										</xs:complexType>
@@ -1175,7 +1253,7 @@
 										</xs:complexType>
 									</xs:element>
 									<xs:element name="primaryBuff" type="primaryBuff"/>
-									<xs:element name="secondaryBuff" type="secondaryBuff"/>									
+									<xs:element name="secondaryBuff" type="secondaryBuff"/>
 									<xs:element name="encrustWith">
 										<xs:complexType>
 											<xs:attribute name="name" type="xs:string" use="required" />
@@ -1417,6 +1495,7 @@
 					<xs:enumeration value="lockdown"/>
 					<xs:enumeration value="manipulateObject"/>
 					<xs:enumeration value="moveRandomCurse"/>
+					<xs:enumeration value="moveCurses"/>
 					<xs:enumeration value="oil"/>
 					<xs:enumeration value="pacify"/>
 					<xs:enumeration value="paralyze"/>
@@ -1430,6 +1509,7 @@
 					<xs:enumeration value="removeInvisibility"/>
 					<xs:enumeration value="removeMonster"/>
 					<xs:enumeration value="resetRandomCooldown"/>
+					<xs:enumeration value="resetCooldowns"/>
 					<xs:enumeration value="resurrection"/>
 					<xs:enumeration value="rift"/>
 					<xs:enumeration value="rogueSkill"/>

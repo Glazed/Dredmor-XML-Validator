@@ -78,6 +78,7 @@ charm
 chest
 chicken
 cleanseArtifact
+clock
 closeX
 closeY
 component
@@ -152,9 +153,12 @@ encrust
 encrustDB
 encrustWith
 entered
+event
+eventType
 evilChest
 existential
 existentialF
+exited
 expansion
 fear
 feet
@@ -164,6 +168,7 @@ fireCrossbow
 first
 firstFrame
 flags
+floor
 food
 foodBuff
 foodVending
@@ -198,11 +203,13 @@ idleSprite
 impact
 info
 ingot
+initial
 input
 instability
 insufficientFunds
 interruptable
 invisible
+isAlive
 isDead
 item
 itemDB
@@ -224,6 +231,8 @@ longIdleSprite
 loot
 lutefisk
 lutefiskStatue
+magicBlocker
+magicUid
 manaUpkeep
 manipulateObject
 maxCharge
@@ -262,6 +271,7 @@ monsterText
 monsterType
 morphSprites
 move
+moveCurses
 moveRandomCurse
 mp
 multibuff
@@ -349,6 +359,7 @@ recipeButtonPosX
 recipeButtonPosY
 recoveryBuff
 regenGfx
+remaining
 removable
 remove
 removeBuffByName
@@ -362,6 +373,7 @@ requireBuffOnNotTriggerName
 requireBuffOnTrigger
 requireBuffOnTriggerName
 requirements
+resetCooldowns
 resetRandomCooldown
 resistable
 resistances
@@ -385,6 +397,8 @@ script
 secondaryBuff
 secondaryScale
 self
+set
+set_type
 sfx
 shield
 shop
@@ -420,6 +434,7 @@ smallIcon
 smithing
 sound
 sounds
+sourceAt
 sourceX
 sourceY
 south
@@ -437,6 +452,7 @@ splat
 sprite
 stackable
 stackSize
+started
 startSkill
 stats
 statue
@@ -445,6 +461,7 @@ stealGold
 stealItem
 stealPercentage
 still
+stopped
 storeTheft
 subtype
 success
@@ -455,6 +472,7 @@ swapWithMonster
 sync
 tag
 target
+target_zombie
 targetAdjacentCorpse
 targetAt
 targetBlink
@@ -501,7 +519,9 @@ type
 uncurse
 unstableEffect
 up
+useFixedName
 useTimer
+value
 vanishSprite
 veganism
 vendingMachineSteal
@@ -518,6 +538,11 @@ weapon
 west
 width
 wizard
+wizardControls
+wizardGraffiti
+wizardKey
+wizardPedestal
+wizardPortal
 x
 xpValue
 y

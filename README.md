@@ -8,6 +8,23 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.3.1
+
+Many XSD fixes contributed by Null for advanced XML feature that not even Gaslamp Games is using!
+
+* trapOrigin can now be "floor".
+* Lots of values changed from bytes to shorts to accomodate larger values.
+* Added "elements" for rooms: clock, magicBlocker.
+* Added room element types: wizardControls, wizardGraffiti, wizardKey, wizardPedestal, wizardPortal.
+* Added attributes for traps: can_push, id.
+* Added room sccript condition types: entered, exited, event, isAlive, started, stopped
+* Added room script condition attributes: started, stopped, eventType
+* Added room script action_type: set.
+* Added room script action create_type: clock, customEngraving, trap.
+* Added room script action strribute: set_type.
+* Added spell type: target_zombie.
+* Added spell effect type: moveCurses, resetCooldowns.
+
 1.1.2.3
 
 * Added charge (spell charging) for monsters.
