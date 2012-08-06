@@ -8,7 +8,7 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
-1.1.3.1
+1.1.3.2
 
 Many XSD fixes contributed by Null for advanced XML feature that not even Gaslamp Games is using!
 
