@@ -8,6 +8,10 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.3.3
+	
+* Changed the ModValidator and ContentDirectory class to support file streams and not just paths to files. This supports using the libraries on the web.
+
 1.1.3.2
 
 Many XSD fixes contributed by Null for advanced XML feature that not even Gaslamp Games is using!

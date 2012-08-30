@@ -63,6 +63,18 @@ namespace DredmorXmlValidation
 		}
 
 		/// <summary>
+		/// Factory method for generating a ContentDirectory from a Stream. It's assumed that it's a zipped mod.
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public static ContentDirectory Create( Stream stream )
+		{
+			ZipFile zip = ZipFile.Read( stream );
+
+			return new ZipFileDirectory( zip, String.Empty, false );
+		}
+
+		/// <summary>
 		/// Enumerate all files in the directory, and optionally all subdirectories.
 		/// </summary>
 		/// <param name="searchOption"></param>

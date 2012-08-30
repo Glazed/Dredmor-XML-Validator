@@ -29,6 +29,14 @@ namespace DredmorXmlValidation
 			mod = ContentDirectory.Create( path, false );
 		}
 
+		public ModValidator( Stream stream )
+		{
+			resources = GameResources.Deserialize( GetResourceManifest() );
+			ExpansionResourcesUsed = new GameResources();
+
+			mod = ContentDirectory.Create( stream );
+		}
+
 		/// <summary>
 		/// Performs mod structure validation, XML and XSD validation, resource validation and expansion requirement validation.
 		/// </summary>
