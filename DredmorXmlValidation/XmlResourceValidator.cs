@@ -884,6 +884,7 @@ namespace DredmorXmlValidation
 				p =>
 				p.SpellType != null
 				&& p.SpellType.ToLower() != "missile"
+				&& p.SpellType.ToLower() != "beammissile"
 				&& p.SpriteIsPng
 			);
 

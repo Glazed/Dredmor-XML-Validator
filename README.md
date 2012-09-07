@@ -8,6 +8,13 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.3.4
+
+* Added hitsNeededToBreak to customBreakable
+* Spell effect "turns" is no a signed byte instead of unsigned (allows you to use -1)
+* mineTimer is now an unsigned int instead of unsigned byte to allow larger values.
+* beammissile spells can now use a PNG as their animation.
+
 1.1.3.3
 	
 * Changed the ModValidator and ContentDirectory class to support file streams and not just paths to files. This supports using the libraries on the web.

@@ -784,6 +784,7 @@
 										<xs:attribute name="broken" type="xs:string" use="required" />
 										<xs:attribute name="can_push" type="dodBoolean" />
 										<xs:attribute name="description" type="xs:string" />
+										<xs:attribute name="hitsNeededToBreak" type="xs:unsignedInt"/>
 										<xs:attribute name="name" type="xs:string" use="required" />
 										<xs:attribute name="percent" type="percentage" />
 										<xs:attribute name="png" type="xs:string" use="required" />
@@ -1152,7 +1153,7 @@
 							<xs:attribute name="mineSpritePngNum" type="xs:unsignedByte" />
 							<xs:attribute name="mineSpritePngRate" type="xs:unsignedByte" />
 							<xs:attribute name="mineSpritePngSeries" type="xs:string" />
-							<xs:attribute name="mineTimer" type="xs:unsignedByte" />
+							<xs:attribute name="mineTimer" type="xs:unsignedInt" />
 							<xs:attribute name="mineUseGlints" type="dodBoolean" />
 							<xs:attribute name="minesMustBeUnobstructed" type="dodBoolean" />
 							<xs:attribute name="radius" type="xs:unsignedByte" />
@@ -1564,7 +1565,7 @@
 		<xs:attribute name="self" type="dodBoolean" />
 		<xs:attribute name="spell" type="xs:string" />
 		<xs:attribute name="taxa" type="xs:string" />
-		<xs:attribute name="turns" type="xs:unsignedByte" />
+		<xs:attribute name="turns" type="xs:byte" />
 		<xs:attributeGroup ref="damageValues"/>
 		<xs:attributeGroup ref="damageFactors"/>
 	</xs:complexType>
