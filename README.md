@@ -8,6 +8,10 @@ http://community.gaslampgames.com/threads/mod-xml-validator.3390/
 
 Changelog:
 
+1.1.3.5
+
+* I forgot to regenerate the words file, so I did that. One new word was added. (This supports case-insensitive XML validation.)
+
 1.1.3.4
 
 * Added hitsNeededToBreak to customBreakable
