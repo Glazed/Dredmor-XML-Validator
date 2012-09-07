@@ -190,6 +190,7 @@ height
 hidden
 hint
 hit
+hitsNeededToBreak
 hitSpell
 hitSprite
 horde
